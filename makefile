@@ -10,13 +10,13 @@ help: #https://dev.to/flpslv/using-makefiles-to-build-and-publish-docker-contain
 	    @echo ""
 	    @echo "Makefile commands:"
 	    @echo "build"
-	    @echo "push"
-	    @echo "all"
+	    @echo "destroy"
+	    @echo "up"
 
 build:
 	cd internal/pkg/check-location/ && make build
 	sh internal/pkg/myip/build.sh
-	
+
 check:
 
 install-prerequisites:
@@ -27,5 +27,5 @@ list-images:
 	docker images
 up:
 	docker compose up
-destroy-volumes:
+destroy:
 	docker compose down --volumes && rm -rf $(DB_DATA)/*

@@ -16,9 +16,11 @@ services:
     image: grafana/grafana
     networks:
       - back-tier
-      - grafana
     ports:
       - "3000:3000"
+    volumes:
+      - "./internal/grafana/data:/var/lib/grafana/data/"
+
 
   db:
     container_name: pg_container

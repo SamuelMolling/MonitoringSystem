@@ -1,11 +1,8 @@
-CREATE USER "app" WITH PASSWORD 'app'
-
-CREATE SCHEMA IF NOT EXISTS bmp280;
 CREATE SCHEMA IF NOT EXISTS app;
 
-DROP TABLE IF EXISTS bmp280.temperature;
+DROP TABLE IF EXISTS app.temperature;
 
-CREATE TABLE bmp280.temperature (
+CREATE TABLE app.temperature (
   id SERIAL PRIMARY KEY,
   temperature real,
   descricao VARCHAR(100) NOT NULL,
@@ -18,9 +15,9 @@ CREATE TABLE bmp280.temperature (
   dia timestamp NOT NULL
 );
 
-DROP TABLE IF EXISTS bmp280.pressure;
+DROP TABLE IF EXISTS app.pressure;
 
-CREATE TABLE bmp280.pressure (
+CREATE TABLE app.pressure (
   id SERIAL PRIMARY KEY,
   pressure real,
   descricao VARCHAR(100) NOT NULL,
@@ -54,3 +51,10 @@ CREATE TABLE app.memory (
   ip VARCHAR(20) NOT NULL,
   dia timestamp NOT NULL
 );
+
+CREATE USER "app" WITH PASSWORD 'app';
+CREATE USER "grafana" WITH PASSWORD 'grafana';
+
+GRANT ALL PRIVILEGES ON DATABASE "monitoring_system" to "app";
+GRANT ALL PRIVILEGES ON DATABASE "monitoring_system" to "grafana";
+
