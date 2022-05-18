@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"net"
-	"time"
 )
 
 func main() {
@@ -30,8 +29,5 @@ func main() {
 		}
 
 		fmt.Print("Message Receive -> ", string(netData)) //escreve a mensagem recebida pelo cliente
-		t := time.Now()                                   //monta o timestamp da mensagem recebida
-		myTime := t.Format(time.RFC3339) + "\n"
-		c.Write([]byte(myTime)) //manda mensagem para o cliente com o timestamp
 	}
 }

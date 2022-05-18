@@ -48,12 +48,6 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 301)
 }
 
-func Edit(w http.ResponseWriter, r *http.Request) {
-	idDoProduto := r.URL.Query().Get("id")
-	produto := models.EditaProduto(idDoProduto)
-	temp.ExecuteTemplate(w, "Edit", produto)
-}
-
 func Update(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		id := r.FormValue("id")

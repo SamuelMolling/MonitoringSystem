@@ -6,8 +6,14 @@ services:
   #   networks:
   #     - front-tier
   #     - back-tier
+
+  # server-app:
+  #   container_name: server_container
+  #   image: check_location
+  #   ports:
+  #     - "3006:3006"
   check_location-api:
-    container_name: check-location-api
+    container_name: check-location-api_container
     image: check_location
     ports:
       - "3005:3005"
