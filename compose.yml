@@ -1,12 +1,16 @@
 services:
-  # frontend:
+  # check-location-api:
   #   image: golang #https://golangexample.com/geolocation-rest-api-obtain-ip-address-geolocation-data/
   #   ports:
   #     - "443:8043"
   #   networks:
   #     - front-tier
   #     - back-tier
-
+  check_location-api:
+    container_name: check-location-api
+    image: check_location
+    ports:
+      - "3005:3005"
   grafana:
     container_name: grafana_container
     image: grafana/grafana
@@ -27,7 +31,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./internal/postgresql/schema/bmp280:/docker-entrypoint-initdb.d/
+      - ./internal/postgresql/schema:/docker-entrypoint-initdb.d/
       - "./internal/postgresql/data:/var/lib/postgresql/data/"
     networks:
       - back-tier

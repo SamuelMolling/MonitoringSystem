@@ -1,4 +1,5 @@
 DB_DATA=internal/postgresql/data
+
 #TESTE
 
 help: #https://dev.to/flpslv/using-makefiles-to-build-and-publish-docker-containers-7c8
@@ -12,11 +13,15 @@ help: #https://dev.to/flpslv/using-makefiles-to-build-and-publish-docker-contain
 	    @echo "push"
 	    @echo "all"
 
+build:
+	cd internal/pkg/check-location/ && make build
+	sh internal/pkg/myip/build.sh
+	
 check:
 
 install-prerequisites:
 	docker pull timescale/timescaledb:latest-pg14
-
+	docker pull grafana/grafana
 
 list-images:
 	docker images
