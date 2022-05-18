@@ -31,7 +31,6 @@ services:
       - "./internal/postgresql/data:/var/lib/postgresql/data/"
     networks:
       - back-tier
-
 networks:
  # front-tier: {}
   back-tier: {}
