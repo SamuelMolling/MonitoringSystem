@@ -9,7 +9,7 @@ services:
 
   # server-app:
   #   container_name: server_container
-  #   image: check_location
+  #   image: server
   #   ports:
   #     - "3006:3006"
   check_location-api:
@@ -26,8 +26,6 @@ services:
       - "3000:3000"
     volumes:
       - "./internal/grafana/data:/var/lib/grafana/data/"
-
-
   db:
     container_name: pg_container
     image: timescale/timescaledb:latest-pg14
