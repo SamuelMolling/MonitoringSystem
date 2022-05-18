@@ -1,0 +1,38 @@
+services:
+  # frontend:
+  #   image: golang #https://golangexample.com/geolocation-rest-api-obtain-ip-address-geolocation-data/
+  #   ports:
+  #     - "443:8043"
+  #   networks:
+  #     - front-tier
+  #     - back-tier
+
+  grafana:
+    container_name: grafana_container
+    image: grafana/grafana
+    networks:
+      - back-tier
+      - grafana
+    ports:
+      - "3000:3000"
+
+  db:
+    container_name: pg_container
+    image: timescale/timescaledb:latest-pg14
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: monitoring_system
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./internal/postgresql/schema/bmp280:/docker-entrypoint-initdb.d/
+      - "./internal/postgresql/data:/var/lib/postgresql/data/"
+    networks:
+      - back-tier
+
+networks:
+ # front-tier: {}
+  back-tier: {}
+  grafana: {}

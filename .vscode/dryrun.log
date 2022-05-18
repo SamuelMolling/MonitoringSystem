@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem'
+make: Leaving directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem'
+ 
+make: *** No targets.  Stop.
+
