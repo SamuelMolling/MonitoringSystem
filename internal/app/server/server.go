@@ -1,14 +1,14 @@
-package main
+package server
 
 import (
 	"bufio"
 	"fmt"
 	"net"
 
-	metricas "./metrics"
+	metricas "./metricas"
 )
 
-func main() {
+func server() {
 
 	l, err := net.Listen("tcp", ":1234") //Listen na porta 1234, usando protocolo tcp
 	if err != nil {                      //valida se não deu erro
