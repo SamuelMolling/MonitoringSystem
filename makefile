@@ -1,4 +1,5 @@
 DB_DATA=internal/postgresql/data
+GRAFANA_DATA=internal/grafana/data
 
 #TESTE
 
@@ -28,4 +29,6 @@ list-images:
 up:
 	docker compose up
 destroy:
-	docker compose down --volumes && rm -rf $(DB_DATA)/*
+	docker compose down --volumes
+	rm -rf $(DB_DATA)/*
+	rm -rf $(GRAFANA_DATA)/*
