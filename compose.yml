@@ -25,7 +25,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - "./internal/grafana/data:/var/lib/grafana"
+      - "./internal/grafana:/etc/grafana/provisioning"
   db:
     container_name: pg_container
     image: timescale/timescaledb:latest-pg14
