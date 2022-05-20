@@ -7,11 +7,11 @@ services:
   #     - front-tier
   #     - back-tier
 
-  # server-app:
-  #   container_name: server_container
-  #   image: server
-  #   ports:
-  #     - "3006:3006"
+  server-app:
+    container_name: server_container
+    image: server
+    ports:
+      - "1234:1234"
   check_location-api:
     container_name: check-location-api_container
     image: check_location
