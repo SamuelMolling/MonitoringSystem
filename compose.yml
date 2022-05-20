@@ -7,6 +7,15 @@ services:
   #     - front-tier
   #     - back-tier
 
+  # frontend:
+  #   container_name: frontend-container
+  #   image: frontend
+  #   ports:
+  #     - "8000:8000"
+  #   networks:
+  #     - front-tier
+  #     - back-tier
+
   # server-app:
   #   container_name: server-container
   #   image: server
@@ -44,4 +53,3 @@ services:
 networks:
  # front-tier: {}
   back-tier: {}
-  grafana: {}
