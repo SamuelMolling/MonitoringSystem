@@ -45,7 +45,7 @@ type Cpu struct {
 	location   *Location
 }
 
-func InsertMetricsCPU(ip string, total_cpu, user_cpu, system_cpu, idle_cpu uint32) {
+func InsertMetricsCPU(ip string, total_cpu, user_cpu, system_cpu, idle_cpu float32) {
 	db := db.ConnectDatabase()
 
 	insertCPU, err := db.Prepare("insert into app.cpu(ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values($1, $2, $3, $4, $5, %6)")

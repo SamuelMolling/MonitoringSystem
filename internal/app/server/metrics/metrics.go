@@ -1,17 +1,23 @@
-package metrics
+package metricas
 
 import (
 	"fmt"
 	"os"
 	"time"
 
+	getip "../pkg/getIp"
+
 	"github.com/mackerelio/go-osstat/cpu"
 	"github.com/mackerelio/go-osstat/memory"
 )
 
-func ReveiveMetrics() {}
+func ReveiveMetrics(temperature, pressure, humidity) {
 
-func CreateMetricsCpu() (float32, float32, float32) { //Create metrics of Cpu
+	var ip string
+	ip = getip.GetIp()
+}
+
+func CreateMetricsCpu() (float32, float32, float32, float32) { //Create metrics of Cpu
 	before, err := cpu.Get()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
@@ -25,7 +31,7 @@ func CreateMetricsCpu() (float32, float32, float32) { //Create metrics of Cpu
 	user_cpu := float64(after.User-before.User) / total * 100
 	system_cpu := float64(after.System-before.System) / total * 10
 	idle_cpu := float64(after.Idle-before.Idle) / total * 100
-	return user_cpu, system_cpu, idle_cpu
+	return total, user_cpu, system_cpu, idle_cpu
 }
 
 func CreateMetricsMemory() (float32, float32) { //Create metrics of Memory

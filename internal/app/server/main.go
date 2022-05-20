@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+
+	"./controllers"
 )
 
 func main() {
@@ -29,5 +31,9 @@ func main() {
 		}
 
 		fmt.Print("Message Receive -> ", string(netData)) //escreve a mensagem recebida pelo cliente
+		controllers.OrganizaMetrics(netData)
+
+		//TRATAR AS METRICAS, CRIAR METRICAS, GET IP AND INSERT IN DATABASE
+
 	}
 }
