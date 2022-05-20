@@ -29,7 +29,7 @@ CREATE TABLE app.pressure (
   id integer NOT NULL DEFAULT nextval('app.pressure_id_seq'),
   ip VARCHAR(20) REFERENCES app.locality(ip) NOT NULL,
   pressure REAL NOT NULL,
-  dia TIMESTAMP NOT NULL,
+  dia TIMESTAMP NOT NULL
 );
 ALTER SEQUENCE app.pressure_id_seq
 OWNED BY app.pressure.id;
@@ -40,11 +40,11 @@ CREATE SEQUENCE app.humidity_id_seq;
 CREATE TABLE app.humidity (
   id integer NOT NULL DEFAULT nextval('app.humidity_id_seq'),
   ip VARCHAR(20) REFERENCES app.locality(ip) NOT NULL,
-  pressure REAL NOT NULL,
-  dia TIMESTAMP NOT NULL,
+  humidity REAL NOT NULL,
+  dia TIMESTAMP NOT NULL
 );
 ALTER SEQUENCE app.humidity_id_seq
-OWNED BY app.humidity_id_seq.id;
+OWNED BY app.humidity.id;
 
 --Table Cpu
 DROP TABLE IF EXISTS app.cpu;
@@ -59,7 +59,7 @@ CREATE TABLE app.cpu (
   dia TIMESTAMP NOT NULL
 );
 ALTER SEQUENCE app.cpu_id_seq
-OWNED BY app.cpu_id_seq.id;
+OWNED BY app.cpu.id;
 
 --Table Memory
 DROP TABLE IF EXISTS app.memory;
@@ -72,7 +72,7 @@ CREATE TABLE app.memory (
   dia TIMESTAMP NOT NULL
 );
 ALTER SEQUENCE app.memory_id_seq
-OWNED BY app.memory_id_seq.id;
+OWNED BY app.memory.id;
 
 --Create users app and grafana
 CREATE USER "app" WITH PASSWORD 'app';

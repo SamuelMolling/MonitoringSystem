@@ -7,18 +7,18 @@ services:
   #     - front-tier
   #     - back-tier
 
-  server-app:
-    container_name: server_container
-    image: server
-    ports:
-      - "1234:1234"
+  # server-app:
+  #   container_name: server-container
+  #   image: server
+  #   ports:
+  #     - "1234:1234"
   check_location-api:
     container_name: check-location-api_container
     image: check_location
     ports:
       - "3005:3005"
   grafana:
-    container_name: grafana_container
+    container_name: grafana-container
     image: grafana/grafana
     networks:
       - back-tier
@@ -27,7 +27,7 @@ services:
     volumes:
       - "./internal/grafana:/etc/grafana/provisioning"
   db:
-    container_name: pg_container
+    container_name: pg-container
     image: timescale/timescaledb:latest-pg14
     restart: always
     environment:
