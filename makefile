@@ -23,9 +23,7 @@ check:
 install-prerequisites:
 	docker pull timescale/timescaledb:latest-pg14
 	docker pull grafana/grafana
-
-list-images:
-	docker images
+	
 up:
 	docker compose up
 destroy:
