@@ -9,7 +9,9 @@ import (
 	"github.com/mackerelio/go-osstat/memory"
 )
 
-func CreateMetricsCpu() (float64, float64, float64) { //Create metrics of Cpu
+func ReveiveMetrics() {}
+
+func CreateMetricsCpu() (float32, float32, float32) { //Create metrics of Cpu
 	before, err := cpu.Get()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
@@ -26,7 +28,7 @@ func CreateMetricsCpu() (float64, float64, float64) { //Create metrics of Cpu
 	return user_cpu, system_cpu, idle_cpu
 }
 
-func CreateMetricsMemory() (uint64, uint64) { //Create metrics of Memory
+func CreateMetricsMemory() (float32, float32) { //Create metrics of Memory
 	memory, err := memory.Get()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
@@ -34,5 +36,5 @@ func CreateMetricsMemory() (uint64, uint64) { //Create metrics of Memory
 	}
 	total_memory := memory.Total
 	used_memory := memory.Used
-	return total_memory, used_memory
+	return float32(total_memory), float32(used_memory)
 }

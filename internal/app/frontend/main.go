@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/SamuelMolling/routes"
+	"routes/"
 )
 
 func main() {

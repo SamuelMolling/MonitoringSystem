@@ -1,13 +1,12 @@
 package getIp
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
-func GetIp() {
+func GetIp() string {
 	const Url = "http://checkip.amazonaws.com/"
 
 	response, err := http.Get(Url)
@@ -20,5 +19,5 @@ func GetIp() {
 
 	body, _ := ioutil.ReadAll(response.Body)
 
-	fmt.Println(string(body))
+	return string(body)
 }

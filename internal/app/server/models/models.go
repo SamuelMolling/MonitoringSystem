@@ -1,7 +1,9 @@
 package models
 
 import (
-	"internal/app/server/db"
+	"time"
+
+	"../db"
 )
 
 type Location struct {
@@ -9,8 +11,6 @@ type Location struct {
 	countryCode string
 	regionCode  string
 	city        string
-	latitude    string
-	longitude   string
 }
 
 type Temperature struct {
@@ -28,114 +28,83 @@ type Pressure struct {
 }
 
 type Memory struct {
-	Id       int
-	pressure float32
-	dia      string
-	location *Location
+	Id           int
+	total_memory float32
+	used_memory  float32
+	dia          string
+	location     *Location
 }
 
 type Cpu struct {
-	Id       int
-	pressure float32
-	dia      string
-	location *Location
+	Id         int
+	total_cpu  float32
+	user_cpu   float32
+	system_cpu float32
+	idle_cpu   float32
+	dia        string
+	location   *Location
 }
 
-func SearchAllMetricsCPU() []Cpu {
+func InsertMetricsCPU(ip string, total_cpu, user_cpu, system_cpu, idle_cpu uint32) {
 	db := db.ConnectDatabase()
 
-	selectDeTodosOsProdutos, err := db.Query("select * from produtos")
+	insertCPU, err := db.Prepare("insert into app.cpu(ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values($1, $2, $3, $4, $5, %6)")
 	if err != nil {
 		panic(err.Error())
 	}
 
-	p := Produto{}
-	produtos := []Produto{}
-
-	for selectDeTodosOsProdutos.Next() {
-		var id, quantidade int
-		var nome, descricao string
-		var preco float64
-
-		err = selectDeTodosOsProdutos.Scan(&id, &nome, &descricao, &preco, &quantidade)
-		if err != nil {
-			panic(err.Error())
-		}
-
-		p.Id = id
-		p.Nome = nome
-		p.Descricao = descricao
-		p.Preco = preco
-		p.Quantidade = quantidade
-
-		produtos = append(produtos, p)
-	}
-	defer db.Close()
-	return produtos
-}
-
-func CriaNovoProduto(nome, descricao string, preco float64, quantidade int) {
-	db := db.ConectaComBancoDeDados()
-
-	insereDadosNoBanco, err := db.Prepare("insert into produtos(nome, descricao, preco, quantidade) values($1, $2, $3, $4)")
-	if err != nil {
-		panic(err.Error())
-	}
-
-	insereDadosNoBanco.Exec(nome, descricao, preco, quantidade)
+	insertCPU.Exec(ip, total_cpu, user_cpu, system_cpu, idle_cpu, time.Now())
 	defer db.Close()
 
 }
 
-func DeletaProduto(id string) {
-	db := db.ConectaComBancoDeDados()
+func InsertMetricsMemory(ip string, total_memory, used_memory float32) {
+	db := db.ConnectDatabase()
 
-	deletarOProduto, err := db.Prepare("delete from produtos where id=$1")
+	insertMemory, err := db.Prepare("insert into app.memory(ip, total_memory, used_memory, dia) values($1, $2, $3, $4)")
 	if err != nil {
 		panic(err.Error())
 	}
 
-	deletarOProduto.Exec(id)
+	insertMemory.Exec(ip, total_memory, used_memory, time.Now())
 	defer db.Close()
 
 }
 
-func EditaProduto(id string) Produto {
-	db := db.ConectaComBancoDeDados()
+func InsertMetricsTemperature(ip string, temperature float32) {
+	db := db.ConnectDatabase()
 
-	produtoDoBanco, err := db.Query("select * from produtos where id=$1", id)
+	insertTemperature, err := db.Prepare("insert into app.temperature(ip, temperature, dia) values($1, $2, $3)")
 	if err != nil {
 		panic(err.Error())
 	}
 
-	produtoParaAtualizar := Produto{}
-
-	for produtoDoBanco.Next() {
-		var id, quantidade int
-		var nome, descricao string
-		var preco float64
-
-		err = produtoDoBanco.Scan(&id, &nome, &descricao, &preco, &quantidade)
-		if err != nil {
-			panic(err.Error())
-		}
-		produtoParaAtualizar.Id = id
-		produtoParaAtualizar.Nome = nome
-		produtoParaAtualizar.Descricao = descricao
-		produtoParaAtualizar.Preco = preco
-		produtoParaAtualizar.Quantidade = quantidade
-	}
+	insertTemperature.Exec(ip, temperature, time.Now())
 	defer db.Close()
-	return produtoParaAtualizar
+
 }
 
-func AtualizaProduto(id int, nome, descricao string, preco float64, quantidade int) {
-	db := db.ConectaComBancoDeDados()
+func InsertMetricsPressure(ip string, pressure float32) {
+	db := db.ConnectDatabase()
 
-	AtualizaProduto, err := db.Prepare("update produtos set nome=$1, descricao=$2, preco=$3, quantidade=$4 where id=$5")
+	insertPressure, err := db.Prepare("insert into app.pressure(ip, pressure, dia) values($1, $2, $3)")
 	if err != nil {
 		panic(err.Error())
 	}
-	AtualizaProduto.Exec(nome, descricao, preco, quantidade, id)
+
+	insertPressure.Exec(ip, pressure, time.Now())
+	defer db.Close()
+
+}
+
+func InsertMetricsHumidity(ip string, humidity float32) {
+	db := db.ConnectDatabase()
+
+	insertHumidity, err := db.Prepare("insert into app.humidity(ip, humidity, dia) values($1, $2, $3)")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	insertHumidity.Exec(ip, humidity, time.Now())
 	defer db.Close()
 }
