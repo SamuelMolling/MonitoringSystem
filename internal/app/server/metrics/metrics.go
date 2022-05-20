@@ -5,17 +5,25 @@ import (
 	"os"
 	"time"
 
+	controllers "../controllers"
+	"../pkg/getIp"
 	"github.com/mackerelio/go-osstat/cpu"
 	"github.com/mackerelio/go-osstat/memory"
 )
 
-func ReveiveMetrics(netData string) (float32, float32, float32) {
+func SendMetrics(netData string) {
+
+	var temperature, pressure, humidity float32
 	//trata
-	//controlers
-	return temperature, pressure, humidity
+	//temperature, pressure, humidity := netData[]
+	ip := getIp.GetIp()
+	total_cpu, user_cpu, system_cpu, idle_cpu := createMetricsCpu()
+	total_memory, used_memory := createMetricsMemory()
+
+	controllers.WriteInDatabase(ip, temperature, pressure, humidity, total_cpu, user_cpu, system_cpu, idle_cpu, total_memory, used_memory)
 }
 
-func CreateMetricsCpu() (float32, float32, float32, float32) { //Create metrics of Cpu
+func createMetricsCpu() (float32, float32, float32, float32) { //Create metrics of Cpu
 	before, err := cpu.Get()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
@@ -32,7 +40,7 @@ func CreateMetricsCpu() (float32, float32, float32, float32) { //Create metrics 
 	return total, user_cpu, system_cpu, idle_cpu
 }
 
-func CreateMetricsMemory() (float32, float32) { //Create metrics of Memory
+func createMetricsMemory() (float32, float32) { //Create metrics of Memory
 	memory, err := memory.Get()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)

@@ -21,6 +21,7 @@ func main() {
 	if err != nil {      //valida se não deu erro
 		fmt.Println(err) //printa o erro caso dê erro
 		return
+
 	}
 
 	for { //for infinito
@@ -29,11 +30,6 @@ func main() {
 			fmt.Println(err) //printa o erro caso dê erro
 			return
 		}
-
-		//fmt.Print("Message Receive -> ", string(netData)) //escreve a mensagem recebida pelo cliente
-		metricas.ReveiveMetrics(netData)
-
-		//TRATAR AS METRICAS, CRIAR METRICAS, GET IP AND INSERT IN DATABASE
-
+		metricas.SendMetrics(string(netData))
 	}
 }

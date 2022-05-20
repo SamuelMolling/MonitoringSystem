@@ -1,4 +1,4 @@
-package controllers
+package teste
 
 import (
 	"html/template"
