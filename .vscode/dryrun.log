@@ -1,6 +1,13 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem'
+echo "Makefile arguments:"
+echo ""
+echo "alpver - Alpine Version"
+echo "kctlver - kubectl version"
+echo ""
+echo "Makefile commands:"
+echo "build"
+echo "destroy"
+echo "up"
 make: Leaving directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem'
  
-make: *** No targets.  Stop.
-

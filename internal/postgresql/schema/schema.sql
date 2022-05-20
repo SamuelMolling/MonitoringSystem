@@ -16,7 +16,7 @@ CREATE TABLE app.temperature (
   dia timestamp NOT NULL
 );
 
-ALTER SEQUENCE app.temperature_id_seq;
+ALTER SEQUENCE app.temperature_id_seq
 OWNED BY app.temperature.id;
 
 DROP TABLE IF EXISTS app.pressure;
@@ -35,8 +35,21 @@ CREATE TABLE app.pressure (
   dia timestamp NOT NULL
 );
 
-ALTER SEQUENCE app.pressure_id_seq;
-OWNED BY app.pressure_id_seq.id;
+CREATE TABLE app.humidity (
+  id integer NOT NULL DEFAULT nextval('app.humidity_id_seq'),
+  pressure real,
+  ip VARCHAR(20) NOT NULL,
+  countryCode VARCHAR(20) NOT NULL,
+  regionCode VARCHAR(20) NOT NULL,
+  city VARCHAR(20) NOT NULL,
+  latitude VARCHAR(20) NOT NULL,
+  longitude VARCHAR(20) NOT NULL,
+  dia timestamp NOT NULL
+);
+
+
+ALTER SEQUENCE app.humidity_id_seq
+OWNED BY app.humidity_id_seq.id;
 
 DROP TABLE IF EXISTS app.cpu;
 
@@ -52,7 +65,7 @@ CREATE TABLE app.cpu (
   dia timestamp NOT NULL
 );
 
-ALTER SEQUENCE app.cpu_id_seq;
+ALTER SEQUENCE app.cpu_id_seq
 OWNED BY app.cpu_id_seq.id;
 
 DROP TABLE IF EXISTS app.memory;
@@ -67,12 +80,11 @@ CREATE TABLE app.memory (
   dia timestamp NOT NULL
 );
 
-ALTER SEQUENCE app.memory_id_seq;
+ALTER SEQUENCE app.memory_id_seq
 OWNED BY app.memory_id_seq.id;
 
 CREATE USER "app" WITH PASSWORD 'app';
 CREATE USER "grafana" WITH PASSWORD 'grafana';
 
-GRANT ALL PRIVILEGES ON DATABASE "monitoring_system" to "app";
 GRANT ALL PRIVILEGES ON DATABASE "monitoring_system" to "grafana";
 
