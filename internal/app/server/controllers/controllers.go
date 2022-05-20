@@ -6,7 +6,7 @@ import (
 	"../pkg/getIp"
 )
 
-func OrganizaMetrics(netData float32) {
+func OrganizaMetrics(netData string) {
 	//tratar metricas
 	//metricas.ReveiveMetrics(temperature, pressure, humidity)
 	//

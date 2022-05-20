@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net"
 
-	"./controllers"
+	metricas "./metrics"
 )
 
 func main() {
@@ -30,8 +30,8 @@ func main() {
 			return
 		}
 
-		fmt.Print("Message Receive -> ", string(netData)) //escreve a mensagem recebida pelo cliente
-		controllers.OrganizaMetrics(netData)
+		//fmt.Print("Message Receive -> ", string(netData)) //escreve a mensagem recebida pelo cliente
+		metricas.ReveiveMetrics(netData)
 
 		//TRATAR AS METRICAS, CRIAR METRICAS, GET IP AND INSERT IN DATABASE
 

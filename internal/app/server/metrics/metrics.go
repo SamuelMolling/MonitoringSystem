@@ -5,16 +5,14 @@ import (
 	"os"
 	"time"
 
-	getip "../pkg/getIp"
-
 	"github.com/mackerelio/go-osstat/cpu"
 	"github.com/mackerelio/go-osstat/memory"
 )
 
-func ReveiveMetrics(temperature, pressure, humidity) {
-
-	var ip string
-	ip = getip.GetIp()
+func ReveiveMetrics(netData string) (float32, float32, float32) {
+	//trata
+	//controlers
+	return temperature, pressure, humidity
 }
 
 func CreateMetricsCpu() (float32, float32, float32, float32) { //Create metrics of Cpu
