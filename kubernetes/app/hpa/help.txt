@@ -1,0 +1,9 @@
+components.yaml (necessário para coletar as métricas dos pods para uso do HPA):
+    https://github.com/kubernetes-sigs/metrics-server
+    
+run sh from gitbash:
+    sh stress-test-hpa.sh 0.001
+
+check:
+    kubectl get hpa --watch
+
