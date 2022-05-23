@@ -18,28 +18,27 @@ func main() {
 		var texto [5]string
 		for i := 0; i < 5; i++ {
 
-			total_memory, used_memory := createMetricsMemory()   //Cria metricas
-			user_cpu, system_cpu, idle_cpu := createMetricsCpu() //Cria metricas
+			var teste = "12, 14, 15"
 
 			switch i {
 			case 0:
-				texto[0] = fmt.Sprintf("CPU User: %.2f%%\n", user_cpu)
+				texto[0] = fmt.Sprintf("%s", teste)
 				fmt.Fprintf(conexao, texto[0]+"\n")
 				break
 			case 1:
-				texto[1] = fmt.Sprintf("CPU System: %.2f%%\n", system_cpu)
+				texto[1] = fmt.Sprintf("%s", teste)
 				fmt.Fprintf(conexao, texto[1]+"\n")
 				break
 			case 2:
-				texto[2] = fmt.Sprintf("CPU Idle: %.2f%%\n", idle_cpu)
+				texto[2] = fmt.Sprintf("%s", teste)
 				fmt.Fprintf(conexao, texto[2]+"\n")
 				break
 			case 3:
-				texto[3] = fmt.Sprintf("Memory Total: %dGB\n", total_memory/1000000000)
+				texto[3] = fmt.Sprintf("%s", teste)
 				fmt.Fprintf(conexao, texto[3]+"\n")
 				break
 			case 4:
-				texto[4] = fmt.Sprintf("memory used: %dGB\n", used_memory/1000000000)
+				texto[4] = fmt.Sprintf("%s", teste)
 				fmt.Fprintf(conexao, texto[4]+"\n")
 				break
 			}

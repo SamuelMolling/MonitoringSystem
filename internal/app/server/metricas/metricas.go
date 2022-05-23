@@ -1,66 +1,32 @@
 package metricas
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 
 	controllers "../controllers"
+	checklocation "../pkg/getCheckLocationAPI"
 	"../pkg/getIp"
 	"github.com/mackerelio/go-osstat/cpu"
 	"github.com/mackerelio/go-osstat/memory"
 )
-
-type Response struct { //https://mholt.github.io/json-to-go/
-	CountryCode string `json:"countryCode"`
-	Region      string `json:"region"`
-	City        string `json:"city"`
-}
 
 func SendMetrics(netData string) {
 	netData = "26, 18, 12"
 
 	resp := strings.Split(netData, ",")
 	t, p, h := resp[0], resp[1], resp[2]
-
 	temperature, pressure, humidity := ConvertStringFloat32(t, p, h)
 
 	ip := getIp.GetIp()
-
-	countryCode, Region, City := getCheckLocationAPI(ip)
+	countryCode, Region, City := checklocation.GetCheckLocationAPI(ip)
 	total_cpu, user_cpu, system_cpu, idle_cpu := createMetricsCpu()
 	total_memory, used_memory := createMetricsMemory()
 
 	controllers.WriteInDatabase(ip, countryCode, Region, City, temperature, pressure, humidity, total_cpu, user_cpu, system_cpu, idle_cpu, total_memory, used_memory)
-}
-
-func getCheckLocationAPI(ip string) (string, string, string) {
-	const Url = "http://127.0.0.1:3005/geo/"
-
-	resp, err := http.Get(Url + ip)
-
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-
-	defer resp.Body.Close()
-
-	body, _ := ioutil.ReadAll(resp.Body)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var response Response
-	json.Unmarshal(body, &response)
-
-	return response.CountryCode, response.Region, response.City
 }
 
 func createMetricsCpu() (float32, float32, float32, float32) { //Create metrics of Cpu

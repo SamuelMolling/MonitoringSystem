@@ -1,11 +1,10 @@
-package server
+package main
 
 import (
 	"bufio"
 	"fmt"
 	"net"
-
-	metricas "./metricas"
+	parameters "pkg/metricas"
 )
 
 func main() {
@@ -30,6 +29,6 @@ func main() {
 			fmt.Println(err) //printa o erro caso dê erro
 			return
 		}
-		metricas.SendMetrics(string(netData))
+		parameters.SendMetrics(string(netData))
 	}
 }
