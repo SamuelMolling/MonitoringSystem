@@ -1,9 +1,8 @@
 package models
 
 import (
+	"server/db"
 	"time"
-
-	"../db"
 )
 
 type Location struct {

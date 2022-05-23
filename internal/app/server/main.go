@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"net"
-	parameters "pkg/metricas"
+	"server/metricas"
 )
 
 func main() {
@@ -29,6 +29,6 @@ func main() {
 			fmt.Println(err) //printa o erro caso dê erro
 			return
 		}
-		parameters.SendMetrics(string(netData))
+		metricas.SendMetrics(string(netData))
 	}
 }

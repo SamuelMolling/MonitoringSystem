@@ -1,12 +1,4 @@
 services:
-  # check-location-api:
-  #   image: golang #https://golangexample.com/geolocation-rest-api-obtain-ip-address-geolocation-data/
-  #   ports:
-  #     - "443:8043"
-  #   networks:
-  #     - front
-  #     - back
-
   # frontend:
   #   container_name: frontend-container
   #   image: frontend
@@ -16,13 +8,15 @@ services:
   #     - front
   #     - back
 
-  # server-app:
-  #   container_name: server-container
-  #   image: server
-  #   ports:
-  #     - "1234:1234"
+  server-app:
+    container_name: server-container
+    image: server
+    ports:
+      - "1234:1234"
+    links:
+      - postgres
   check_location-api:
-    container_name: check-location-api_container
+    container_name: check-location-api-container
     image: check_location
     ports:
       - "3005:3005"
@@ -30,7 +24,7 @@ services:
       - server-app
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
+    container_name: grafana-container
     ports:
       - "3000:3000"
     links:

@@ -15,31 +15,31 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-		var texto [5]string
+		var texto string
 		for i := 0; i < 5; i++ {
 
-			var teste = "12, 14, 15"
+			var teste = "12"
 
 			switch i {
 			case 0:
-				texto[0] = fmt.Sprintf("%s", teste)
-				fmt.Fprintf(conexao, texto[0]+"\n")
-				break
+				//texto = fmt.Sprintf("%s", teste)
+				fmt.Fprintf(conexao, texto)
+				//break
 			case 1:
-				texto[1] = fmt.Sprintf("%s", teste)
-				fmt.Fprintf(conexao, texto[1]+"\n")
+				texto = fmt.Sprintf("%s", teste)
+				fmt.Fprintf(conexao, texto)
 				break
 			case 2:
-				texto[2] = fmt.Sprintf("%s", teste)
-				fmt.Fprintf(conexao, texto[2]+"\n")
+				texto = fmt.Sprintf("%s", teste)
+				fmt.Fprintf(conexao, texto)
 				break
 			case 3:
-				texto[3] = fmt.Sprintf("%s", teste)
-				fmt.Fprintf(conexao, texto[3]+"\n")
+				texto = fmt.Sprintf("%s", teste)
+				fmt.Fprintf(conexao, texto)
 				break
 			case 4:
-				texto[4] = fmt.Sprintf("%s", teste)
-				fmt.Fprintf(conexao, texto[4]+"\n")
+				texto = fmt.Sprintf("%s", teste)
+				fmt.Fprintf(conexao, texto)
 				break
 			}
 

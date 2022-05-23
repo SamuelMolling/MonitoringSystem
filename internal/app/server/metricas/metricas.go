@@ -3,13 +3,13 @@ package metricas
 import (
 	"fmt"
 	"os"
+	"server/controllers"
+	checklocation "server/pkg/getCheckLocationAPI"
+	"server/pkg/getIp"
 	"strconv"
 	"strings"
 	"time"
 
-	controllers "../controllers"
-	checklocation "../pkg/getCheckLocationAPI"
-	"../pkg/getIp"
 	"github.com/mackerelio/go-osstat/cpu"
 	"github.com/mackerelio/go-osstat/memory"
 )
@@ -39,10 +39,10 @@ func createMetricsCpu() (float32, float32, float32, float32) { //Create metrics 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
 	}
-	total := float64(after.Total - before.Total)
-	user_cpu := float64(after.User-before.User) / total * 100
-	system_cpu := float64(after.System-before.System) / total * 10
-	idle_cpu := float64(after.Idle-before.Idle) / total * 100
+	total := float32(after.Total - before.Total)
+	user_cpu := float32(after.User-before.User) / total * 100
+	system_cpu := float32(after.System-before.System) / total * 10
+	idle_cpu := float32(after.Idle-before.Idle) / total * 100
 	return total, user_cpu, system_cpu, idle_cpu
 }
 

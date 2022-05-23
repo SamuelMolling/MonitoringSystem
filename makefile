@@ -15,8 +15,8 @@ help: #https://dev.to/flpslv/using-makefiles-to-build-and-publish-docker-contain
 	    @echo "up"
 
 build:
-	cd internal/pkg/check-location/ && make build
-	sh internal/pkg/myip/build.sh
+	cd internal/app/check-location/ && make build
+	cd internal/app/server/ && make build
 
 check:
 

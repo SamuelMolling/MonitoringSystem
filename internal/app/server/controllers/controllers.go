@@ -1,8 +1,6 @@
 package controllers
 
-import (
-	models "../models"
-)
+import "server/models"
 
 func WriteInDatabase(ip, countryCode, Region, City string, temperature, pressure, humidity, total_cpu, user_cpu, system_cpu, idle_cpu, total_memory, used_memory float32) {
 	models.InsertMetricsLocation(ip, countryCode, Region, City)
