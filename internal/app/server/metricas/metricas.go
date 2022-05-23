@@ -33,7 +33,7 @@ func SendMetrics(netData string) {
 	total_cpu, user_cpu, system_cpu, idle_cpu := createMetricsCpu()
 	total_memory, used_memory := createMetricsMemory()
 
-	controllers.WriteInDatabase(ip, temperature, pressure, humidity, total_cpu, user_cpu, system_cpu, idle_cpu, total_memory, used_memory, countryCode, Region, City)
+	controllers.WriteInDatabase(ip, countryCode, Region, City, temperature, pressure, humidity, total_cpu, user_cpu, system_cpu, idle_cpu, total_memory, used_memory)
 }
 
 func getCheckLocationAPI(ip string) (string, string, string) {
