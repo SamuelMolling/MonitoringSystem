@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
+	"strings"
 	"time"
 
 	controllers "../controllers"
@@ -23,13 +25,15 @@ type Response struct { //https://mholt.github.io/json-to-go/
 
 func SendMetrics(netData string) {
 	netData = "26, 18, 12"
-	var temperature, pressure, humidity float32
-	//netData
-	//temperature, pressure, humidity := netData[]
+
+	resp := strings.Split(netData, ",")
+	t, p, h := resp[0], resp[1], resp[2]
+
+	temperature, pressure, humidity := ConvertStringFloat32(t, p, h)
+
 	ip := getIp.GetIp()
 
 	countryCode, Region, City := getCheckLocationAPI(ip)
-
 	total_cpu, user_cpu, system_cpu, idle_cpu := createMetricsCpu()
 	total_memory, used_memory := createMetricsMemory()
 
@@ -85,4 +89,17 @@ func createMetricsMemory() (float32, float32) { //Create metrics of Memory
 	total_memory := memory.Total
 	used_memory := memory.Used
 	return float32(total_memory), float32(used_memory)
+}
+
+func ConvertStringFloat32(temperature, pressure, humidity string) (float32, float32, float32) {
+
+	var t, p, h float64
+
+	t, _ = strconv.ParseFloat(temperature, 32)
+
+	p, _ = strconv.ParseFloat(pressure, 32)
+
+	h, _ = strconv.ParseFloat(humidity, 32)
+
+	return float32(t), float32(p), float32(h)
 }
