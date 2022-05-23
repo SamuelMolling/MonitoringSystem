@@ -15,7 +15,7 @@ import (
 	"github.com/mackerelio/go-osstat/memory"
 )
 
-type Response struct {
+type Response struct { //https://mholt.github.io/json-to-go/
 	CountryCode string `json:"countryCode"`
 	Region      string `json:"region"`
 	City        string `json:"city"`
