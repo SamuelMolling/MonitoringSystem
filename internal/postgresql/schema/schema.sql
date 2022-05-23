@@ -79,3 +79,57 @@ CREATE USER "grafana" WITH PASSWORD 'grafana';
 GRANT SELECT, INSERT, DELETE, UPDATE ON ALL TABLES IN SCHEMA public TO "app";
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO "grafana";
 
+--Excluir (DADOS PARA TESTES)
+insert into locality (ip, countrycode, regioncode, city) values ('172.225.106.52', 'BR', 'RS', 'Campo Bom');
+insert into locality (ip, countrycode, regioncode, city) values ('172.225.106.53', 'BR', 'RS', 'Novo Hamburgo');
+insert into locality (ip, countrycode, regioncode, city) values ('172.225.106.55', 'BR', 'RS', 'Dois Irmãos');
+
+insert into temperature (ip, temperature, dia) values ('172.225.106.52', 20, now());
+insert into temperature (ip, temperature, dia) values ('172.225.106.52', 21, now());
+insert into temperature (ip, temperature, dia) values ('72.225.106.53', 22, now());
+insert into temperature (ip, temperature, dia) values ('72.225.106.53', 22, now());
+insert into temperature (ip, temperature, dia) values ('172.225.106.55', 25, now());
+insert into temperature (ip, temperature, dia) values ('172.225.106.55', 24, now());
+insert into temperature (ip, temperature, dia) values ('172.225.106.52', 26, now());
+insert into temperature (ip, temperature, dia) values ('172.225.106.53', 25, now());
+insert into temperature (ip, temperature, dia) values ('172.225.106.55', 24, now());
+
+insert into pressure (ip, temperature, dia) values ('172.225.106.52', 1, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.52', 1, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.52', 2, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.53', 2, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.53', 5, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.53', 4, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.55', 6, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.55', 5, now());
+insert into pressure (ip, temperature, dia) values ('172.225.106.55', 4, now());
+
+insert into humidity (ip, temperature, dia) values ('172.225.106.52', 0, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.52', 1, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.52', 2, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.53', 2, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.53', 5, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.53', 4, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.55', 6, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.55', 5, now());
+insert into humidity (ip, temperature, dia) values ('172.225.106.55', 4, now());
+
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.52', 16, 13, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.52', 16, 14, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.52', 16, 12, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.53', 16, 11, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.53', 16, 11, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.53', 16, 10.9, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.55', 16, 3, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.55', 16, 3.2, now());
+insert into memory (ip, total_memory, used_memory, dia) values ('172.225.106.55', 16, 3.3, now());
+
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.52', 16, 13, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.52', 16, 14, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.52', 16, 12, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.53', 16, 11, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.53', 16, 11, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.53', 16, 10.9, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.55', 16, 3, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.55', 16, 3.2, 18, 20, now());
+insert into cpu (ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values ('172.225.106.55', 16, 3.3, 18, 20, now());
