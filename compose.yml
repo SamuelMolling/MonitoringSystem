@@ -8,13 +8,13 @@ services:
   #     - front
   #     - back
 
-  server-app:
-    container_name: server-container
-    image: server
-    ports:
-      - "1234:1234"
-    links:
-      - postgres
+  # server-app:
+  #   container_name: server-container
+  #   image: server
+  #   ports:
+  #     - "1234:1234"
+  #   links:
+  #     - postgres
   check_location-api:
     container_name: check-location-api-container
     image: check_location

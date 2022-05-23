@@ -18,7 +18,7 @@ func main() {
 
 	c, err := l.Accept() //Aceita conexões
 	if err != nil {      //valida se não deu erro
-		fmt.Println(err) //printa o erro caso dê erro
+		fmt.Println(err) //printa o erro caso dê errogo
 		return
 
 	}
@@ -29,6 +29,7 @@ func main() {
 			fmt.Println(err) //printa o erro caso dê erro
 			return
 		}
+		println(netData)
 		metricas.SendMetrics(string(netData))
 	}
 }
