@@ -2,6 +2,7 @@ package metricas
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"server/controllers"
 	checklocation "server/pkg/getCheckLocationAPI"
@@ -15,13 +16,19 @@ import (
 )
 
 func SendMetrics(netData string) {
-	netData = "26, 18, 12"
+	//netData = "26,18,12"
 
 	resp := strings.Split(netData, ",")
 	t, p, h := resp[0], resp[1], resp[2]
+	t = strings.TrimSpace(t)
+	p = strings.TrimSpace(p)
+	h = strings.TrimSpace(h)
 	temperature, pressure, humidity := ConvertStringFloat32(t, p, h)
 
 	ip := getIp.GetIp()
+
+	ip = strings.TrimSpace(ip) //remove o '\n'
+
 	countryCode, Region, City := checklocation.GetCheckLocationAPI(ip)
 	total_cpu, user_cpu, system_cpu, idle_cpu := createMetricsCpu()
 	total_memory, used_memory := createMetricsMemory()
@@ -61,11 +68,20 @@ func ConvertStringFloat32(temperature, pressure, humidity string) (float32, floa
 
 	var t, p, h float64
 
-	t, _ = strconv.ParseFloat(temperature, 32)
+	t, err := strconv.ParseFloat(temperature, 32)
+	if err != nil {
+		log.Println("Converting error of temperature:", err)
+	}
 
-	p, _ = strconv.ParseFloat(pressure, 32)
+	p, err = strconv.ParseFloat(pressure, 32)
+	if err != nil {
+		log.Println("Converting error of pressure:", err)
+	}
 
-	h, _ = strconv.ParseFloat(humidity, 32)
+	h, err = strconv.ParseFloat(humidity, 32)
+	if err != nil {
+		log.Println("Converting error of humidity:", err)
+	}
 
 	return float32(t), float32(p), float32(h)
 }

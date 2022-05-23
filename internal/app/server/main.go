@@ -30,6 +30,9 @@ func main() {
 			return
 		}
 		println(netData)
+
 		metricas.SendMetrics(string(netData))
+		println("ok")
+
 	}
 }

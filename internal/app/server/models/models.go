@@ -47,7 +47,7 @@ type Cpu struct {
 func InsertMetricsCPU(ip string, total_cpu, user_cpu, system_cpu, idle_cpu float32) {
 	db := db.ConnectDatabase()
 
-	insertCPU, err := db.Prepare("insert into cpu(ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values($1, $2, $3, $4, $5, %6)")
+	insertCPU, err := db.Prepare("insert into cpu(ip, total_cpu, user_cpu, system_cpu, idle_cpu, dia) values($1, $2, $3, $4, $5, $6)")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -111,7 +111,7 @@ func InsertMetricsHumidity(ip string, humidity float32) {
 func InsertMetricsLocation(ip, countryCode, regionCode, city string) {
 	db := db.ConnectDatabase()
 
-	insertlocality, err := db.Prepare("insert into locality (ip, countrycode, regioncode, city) values ($1, $2, $3, $4")
+	insertlocality, err := db.Prepare("insert into locality (ip, countrycode, regioncode, city) values($1, $2, $3, $4)")
 	if err != nil {
 		panic(err.Error())
 	}
