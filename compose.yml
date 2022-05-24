@@ -35,7 +35,7 @@ services:
       - ./internal/grafana/data:/var/lib/grafana/
   postgres:
     container_name: pg-container
-    image: timescale/timescaledb:latest-pg14
+    image: postgres
     restart: always
     env_file: 
       - "internal/postgresql/environment/.tsenv"

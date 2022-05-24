@@ -28,5 +28,5 @@ up:
 	docker compose up
 destroy:
 	docker compose down --volumes
-	rm -rf $(DB_DATA)/*
+	rm -rf $(DB_DATA)/
 	rm -rf $(GRAFANA_DATA)/*

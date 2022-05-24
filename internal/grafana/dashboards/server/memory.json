@@ -36,7 +36,35 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
@@ -56,25 +84,23 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 12,
+        "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 2,
+      "id": 8,
       "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "pluginVersion": "8.5.2",
       "targets": [
         {
           "datasource": {
@@ -85,13 +111,13 @@
           "group": [],
           "metricColumn": "ip",
           "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  total_memory\nFROM memory\nWHERE\n  $__timeFilter(dia)\nORDER BY 1,2",
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  used_memory/1000000000\nFROM memory\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "total_memory"
+                  "used_memory/1000000000"
                 ],
                 "type": "column"
               }
@@ -100,101 +126,11 @@
           "table": "memory",
           "timeColumn": "dia",
           "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "where": []
         }
       ],
-      "title": "Total Memory",
-      "type": "gauge"
-    },
-    {
-      "datasource": {
-        "type": "postgres",
-        "uid": "PD80DC0A202C84E8F"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 4,
-      "options": {
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "8.5.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PD80DC0A202C84E8F"
-          },
-          "format": "time_series",
-          "group": [],
-          "metricColumn": "ip",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  used_memory\nFROM memory\nWHERE\n  $__timeFilter(dia)\nORDER BY 1,2",
-          "refId": "A",
-          "select": [
-            [
-              {
-                "params": [
-                  "used_memory"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "memory",
-          "timeColumn": "dia",
-          "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
-        }
-      ],
-      "title": "Used Memory",
-      "type": "gauge"
+      "title": "Used Memory for day",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -225,13 +161,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 11,
+        "w": 8,
         "x": 0,
-        "y": 9
+        "y": 12
       },
       "id": 6,
       "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -240,8 +179,8 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "text": {},
+        "textMode": "auto"
       },
       "pluginVersion": "8.5.2",
       "targets": [
@@ -254,13 +193,13 @@
           "group": [],
           "metricColumn": "ip",
           "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  total_memory - used_memory\nFROM memory\nWHERE\n  $__timeFilter(dia)\nORDER BY 1,2",
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  total_memory/1000000000\nFROM memory\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "total_memory - used_memory"
+                  "total_memory/1000000000"
                 ],
                 "type": "column"
               }
@@ -269,17 +208,171 @@
           "table": "memory",
           "timeColumn": "dia",
           "timeColumnType": "timestamp",
-          "where": [
-            {
-              "name": "$__timeFilter",
-              "params": [],
-              "type": "macro"
-            }
-          ]
+          "where": []
+        }
+      ],
+      "title": "Total Memory",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PD80DC0A202C84E8F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 8,
+        "x": 8,
+        "y": 12
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PD80DC0A202C84E8F"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "ip",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  used_memory/1000000000\nFROM memory\nORDER BY 1,2",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "used_memory/1000000000"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "memory",
+          "timeColumn": "dia",
+          "timeColumnType": "timestamp",
+          "where": []
+        }
+      ],
+      "title": "Used Memory",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PD80DC0A202C84E8F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 8,
+        "x": 16,
+        "y": 12
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PD80DC0A202C84E8F"
+          },
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "ip",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  (total_memory/1000000000)-(used_memory/1000000000)\nFROM memory\nORDER BY 1,2",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "(total_memory/1000000000)-(used_memory/1000000000)"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "memory",
+          "timeColumn": "dia",
+          "timeColumnType": "timestamp",
+          "where": []
         }
       ],
       "title": "Free Memory",
-      "type": "gauge"
+      "type": "stat"
     }
   ],
   "schemaVersion": 36,
@@ -296,6 +389,6 @@
   "timezone": "",
   "title": "Memory Statistics",
   "uid": "v4Rojwu7z",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
