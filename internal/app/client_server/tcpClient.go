@@ -17,6 +17,6 @@ func main() {
 		fmt.Print("Text to send: ")
 		text, _ := reader.ReadString('\n')
 		// send to socket
-		fmt.Fprintf(conn, text+"\n")
+		fmt.Fprintf(conn, text+"\n") //T:21.75,P:101535.33 //T:21.74,P:101530.61T:21.74,P:101525.91T:21.75,P:101532.11
 	}
 }

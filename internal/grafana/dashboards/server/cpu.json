@@ -24,10 +24,89 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 4,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PD80DC0A202C84E8F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "key": "Q-af5d5ffe-e22f-4f9c-b4e8-053423f04d92-0",
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  ip,\n  countrycode,\n  regioncode,\n  city\nFROM locality\nORDER BY 1,2",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Locality",
+      "type": "table"
+    },
     {
       "datasource": {
         "type": "postgres",
@@ -41,29 +120,17 @@
           "custom": {
             "axisLabel": "",
             "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
+            "axisSoftMin": 0,
+            "fillOpacity": 80,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
             }
           },
           "mappings": [],
@@ -81,128 +148,54 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "172.225.106.53"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 12,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 4
       },
       "id": 10,
       "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "groupWidth": 0.7,
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom"
         },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "text": {},
         "tooltip": {
           "mode": "single",
           "sort": "none"
-        }
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": -200
       },
+      "pluginVersion": "8.5.2",
       "targets": [
         {
           "datasource": {
             "type": "postgres",
             "uid": "PD80DC0A202C84E8F"
           },
-          "format": "time_series",
+          "format": "table",
           "group": [],
+          "hide": false,
           "metricColumn": "ip",
           "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  system_cpu AS \"system_cpu\"\nFROM cpu\nORDER BY 1,2",
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  total_cpu/10 AS \"total_cpu\"\nFROM cpu\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "system_cpu"
-                ],
-                "type": "column"
-              },
-              {
-                "params": [
-                  "system_cpu"
-                ],
-                "type": "alias"
-              }
-            ]
-          ],
-          "table": "cpu",
-          "timeColumn": "dia",
-          "timeColumnType": "timestamp",
-          "where": []
-        },
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PD80DC0A202C84E8F"
-          },
-          "format": "time_series",
-          "group": [],
-          "hide": false,
-          "metricColumn": "ip",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  idle_cpu\nFROM cpu\nORDER BY 1,2",
-          "refId": "B",
-          "select": [
-            [
-              {
-                "params": [
-                  "idle_cpu"
-                ],
-                "type": "column"
-              }
-            ]
-          ],
-          "table": "cpu",
-          "timeColumn": "dia",
-          "timeColumnType": "timestamp",
-          "where": []
-        },
-        {
-          "datasource": {
-            "type": "postgres",
-            "uid": "PD80DC0A202C84E8F"
-          },
-          "format": "time_series",
-          "group": [],
-          "hide": false,
-          "metricColumn": "ip",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  total_cpu/100 AS \"total_cpu\"\nFROM cpu\nORDER BY 1,2",
-          "refId": "C",
-          "select": [
-            [
-              {
-                "params": [
-                  "total_cpu/100"
+                  "total_cpu/10"
                 ],
                 "type": "column"
               },
@@ -224,13 +217,13 @@
             "type": "postgres",
             "uid": "PD80DC0A202C84E8F"
           },
-          "format": "time_series",
+          "format": "table",
           "group": [],
           "hide": false,
           "metricColumn": "ip",
           "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  user_cpu AS \"user_cpu\"\nFROM cpu\nORDER BY 1,2",
-          "refId": "D",
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  user_cpu\nFROM cpu\nORDER BY 1,2",
+          "refId": "B",
           "select": [
             [
               {
@@ -238,12 +231,60 @@
                   "user_cpu"
                 ],
                 "type": "column"
-              },
+              }
+            ]
+          ],
+          "table": "cpu",
+          "timeColumn": "dia",
+          "timeColumnType": "timestamp",
+          "where": []
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PD80DC0A202C84E8F"
+          },
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "ip",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  idle_cpu\nFROM cpu\nORDER BY 1,2",
+          "refId": "C",
+          "select": [
+            [
               {
                 "params": [
-                  "user_cpu"
+                  "idle_cpu"
                 ],
-                "type": "alias"
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "cpu",
+          "timeColumn": "dia",
+          "timeColumnType": "timestamp",
+          "where": []
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "PD80DC0A202C84E8F"
+          },
+          "format": "table",
+          "group": [],
+          "hide": false,
+          "metricColumn": "ip",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  system_cpu\nFROM cpu\nORDER BY 1,2",
+          "refId": "D",
+          "select": [
+            [
+              {
+                "params": [
+                  "system_cpu"
+                ],
+                "type": "column"
               }
             ]
           ],
@@ -253,8 +294,8 @@
           "where": []
         }
       ],
-      "title": "Cpu Day ",
-      "type": "timeseries"
+      "title": "Cpu Day %",
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -276,7 +317,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 1000
               }
             ]
           }
@@ -287,10 +328,13 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 7
+        "y": 16
       },
       "id": 2,
       "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -299,8 +343,7 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "textMode": "auto"
       },
       "pluginVersion": "8.5.2",
       "targets": [
@@ -313,13 +356,13 @@
           "group": [],
           "metricColumn": "ip",
           "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  total_cpu/100\nFROM cpu\nWHERE\n  $__timeFilter(dia)\nORDER BY 1,2",
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  total_cpu/10\nFROM cpu\nWHERE\n  $__timeFilter(dia)\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
               {
                 "params": [
-                  "total_cpu/100"
+                  "total_cpu/10"
                 ],
                 "type": "column"
               }
@@ -337,8 +380,8 @@
           ]
         }
       ],
-      "title": "CPU Total",
-      "type": "gauge"
+      "title": "CPU Total %",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -371,7 +414,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 7
+        "y": 16
       },
       "id": 6,
       "options": {
@@ -421,7 +464,7 @@
           ]
         }
       ],
-      "title": "CPU User",
+      "title": "CPU User %",
       "type": "gauge"
     },
     {
@@ -455,7 +498,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 24
       },
       "id": 8,
       "options": {
@@ -505,7 +548,7 @@
           ]
         }
       ],
-      "title": "CPU System",
+      "title": "CPU System %",
       "type": "gauge"
     },
     {
@@ -528,7 +571,7 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 100
               }
             ]
           }
@@ -539,7 +582,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 24
       },
       "id": 4,
       "options": {
@@ -589,7 +632,7 @@
           ]
         }
       ],
-      "title": "CPU Idle",
+      "title": "CPU Idle %",
       "type": "gauge"
     }
   ],
@@ -608,6 +651,6 @@
   "timezone": "",
   "title": "CPU Statistics",
   "uid": "eN2wswunz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }

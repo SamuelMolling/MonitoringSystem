@@ -19,6 +19,20 @@ CREATE TABLE temperature (
 ALTER SEQUENCE temperature_id_seq
 OWNED BY temperature.id;
 
+CREATE OR REPLACE FUNCTION view_temperature_row()
+  RETURNS TRIGGER AS $$
+    BEGIN
+      DELETE FROM temperature where temperature = 0;
+      RETURN NULL;
+    END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER validate_temperature
+    AFTER INSERT ON temperature
+    FOR EACH ROW
+    EXECUTE FUNCTION view_temperature_row();
+
 --Table Pressure
 DROP TABLE IF EXISTS pressure;
 CREATE SEQUENCE pressure_id_seq;
@@ -31,17 +45,21 @@ CREATE TABLE pressure (
 ALTER SEQUENCE pressure_id_seq
 OWNED BY pressure.id;
 
---Table Humidity
-DROP TABLE IF EXISTS humidity;
-CREATE SEQUENCE humidity_id_seq;
-CREATE TABLE humidity (
-  id integer NOT NULL DEFAULT nextval('humidity_id_seq'),
-  ip VARCHAR(20) REFERENCES locality(ip) NOT NULL,
-  humidity REAL NOT NULL,
-  dia TIMESTAMP NOT NULL
-);
-ALTER SEQUENCE humidity_id_seq
-OWNED BY humidity.id;
+CREATE OR REPLACE FUNCTION view_pressure_row()
+  RETURNS TRIGGER AS $$
+    BEGIN
+      DELETE FROM pressure where pressure = 0;
+      DELETE FROM pressure where pressure < 100000;
+      RETURN NULL;
+    END;
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER validate_pressure
+    AFTER INSERT ON pressure
+    FOR EACH ROW
+    EXECUTE FUNCTION view_pressure_row();
+
 
 --Table Cpu
 DROP TABLE IF EXISTS cpu;
@@ -80,3 +98,18 @@ GRANT SELECT, INSERT, DELETE, UPDATE ON ALL TABLES IN SCHEMA public TO "app";
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO "app";
 
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO "grafana";
+
+CREATE OR REPLACE TRIGGER validate_temperature
+    AFTER INSERT ON temperature
+    FOR EACH ROW
+    EXECUTE FUNCTION view_temperature_row();
+
+
+CREATE OR REPLACE FUNCTION view_temperature_row()
+  RETURNS TRIGGER AS $$
+    BEGIN
+      DELETE FROM temperature where temperature = 0;
+      RETURN NULL;
+    END;
+$$
+LANGUAGE plpgsql;

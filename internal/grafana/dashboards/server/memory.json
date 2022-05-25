@@ -24,10 +24,89 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "PD80DC0A202C84E8F"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "8.5.2",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "key": "Q-8520956a-33b7-414a-9466-dfc42ffa65e7-0",
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  ip,\n  countrycode,\n  regioncode,\n  city\nFROM locality\nORDER BY 1,2",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Locality",
+      "type": "table"
+    },
     {
       "datasource": {
         "type": "postgres",
@@ -79,15 +158,41 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "decgbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "104.28.63.131"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 4
       },
       "id": 8,
       "options": {
@@ -144,6 +249,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "min": 16,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -156,7 +262,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "decgbytes"
         },
         "overrides": []
       },
@@ -164,13 +271,10 @@
         "h": 11,
         "w": 8,
         "x": 0,
-        "y": 12
+        "y": 16
       },
       "id": 6,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -179,8 +283,8 @@
           "fields": "",
           "values": false
         },
-        "text": {},
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "8.5.2",
       "targets": [
@@ -212,7 +316,7 @@
         }
       ],
       "title": "Total Memory",
-      "type": "stat"
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -225,6 +329,8 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "max": 16,
+          "min": 10,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -234,10 +340,11 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 14
               }
             ]
-          }
+          },
+          "unit": "decgbytes"
         },
         "overrides": []
       },
@@ -245,13 +352,10 @@
         "h": 11,
         "w": 8,
         "x": 8,
-        "y": 12
+        "y": 16
       },
       "id": 4,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -260,7 +364,8 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "8.5.2",
       "targets": [
@@ -292,7 +397,7 @@
         }
       ],
       "title": "Used Memory",
-      "type": "stat"
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -305,6 +410,8 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "max": 16,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -314,10 +421,11 @@
               },
               {
                 "color": "red",
-                "value": 80
+                "value": 2
               }
             ]
-          }
+          },
+          "unit": "decgbytes"
         },
         "overrides": []
       },
@@ -325,13 +433,10 @@
         "h": 11,
         "w": 8,
         "x": 16,
-        "y": 12
+        "y": 16
       },
       "id": 2,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -340,7 +445,8 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "8.5.2",
       "targets": [
@@ -372,7 +478,7 @@
         }
       ],
       "title": "Free Memory",
-      "type": "stat"
+      "type": "gauge"
     }
   ],
   "schemaVersion": 36,

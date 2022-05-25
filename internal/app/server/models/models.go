@@ -95,18 +95,6 @@ func InsertMetricsPressure(ip string, pressure float32) {
 
 }
 
-func InsertMetricsHumidity(ip string, humidity float32) {
-	db := db.ConnectDatabase()
-
-	insertHumidity, err := db.Prepare("insert into humidity(ip, humidity, dia) values($1, $2, CURRENT_TIMESTAMP);")
-	if err != nil {
-		panic(err.Error())
-	}
-
-	insertHumidity.Exec(ip, humidity)
-	defer db.Close()
-}
-
 func InsertMetricsLocation(ip, countryCode, regionCode, city string) {
 	db := db.ConnectDatabase()
 

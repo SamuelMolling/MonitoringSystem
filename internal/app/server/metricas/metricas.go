@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"server/controllers"
 	checklocation "server/pkg/getCheckLocationAPI"
 	"server/pkg/getIp"
@@ -16,24 +17,61 @@ import (
 )
 
 func SendMetrics(netData string) {
-	//netData = "26,18,12"
-
-	resp := strings.Split(netData, ",")
-	t, p, h := resp[0], resp[1], resp[2]
-	t = strings.TrimSpace(t)
-	p = strings.TrimSpace(p)
-	h = strings.TrimSpace(h)
-	temperature, pressure, humidity := ConvertStringFloat32(t, p, h)
-
 	ip := getIp.GetIp()
-
-	ip = strings.TrimSpace(ip) //remove o '\n'
-
+	ip = strings.TrimSpace(ip)
 	countryCode, Region, City := checklocation.GetCheckLocationAPI(ip)
+	controllers.WriteLocation(ip, countryCode, Region, City)
+
+	//netData = "T:21.74,P:101530.61T:21.76,P:101525.91T:21.75,P:101532.11"
+	resp := strings.Split(netData, ",")
+	for i := 0; i < len(resp); i++ {
+		matched, _ := regexp.MatchString("^T", resp[i])
+		if matched {
+			t := resp[i]
+			t = strings.TrimSpace(t)
+			t = strings.TrimPrefix(t, "T:")
+			temp := strings.Split(t, "P")
+			for i := 0; i < len(temp); i++ {
+				t = temp[i]
+				itsPressure, _ := regexp.MatchString("^:", temp[i])
+				if itsPressure {
+					p := strings.TrimPrefix(temp[i], ":")
+					pressure := ConvertStringFloat32(p)
+					controllers.WritePressure(ip, pressure)
+					continue
+				} else {
+					t = temp[i]
+				}
+			}
+			t = strings.TrimSpace(t)
+			temperature := ConvertStringFloat32(t)
+			println("T:", temperature)
+			controllers.WriteTemperature(ip, temperature)
+		} else {
+			p := resp[i]
+			p = strings.TrimSpace(p)
+			p = strings.TrimPrefix(p, "P:")
+			temp := strings.Split(p, "T")
+			for i := 0; i < len(temp); i++ {
+				p = temp[i]
+				itsTemperature, _ := regexp.MatchString("^:", temp[i])
+				if itsTemperature {
+					t := strings.TrimPrefix(temp[i], ":")
+					temperature := ConvertStringFloat32(t)
+					controllers.WriteTemperature(ip, temperature)
+					continue
+				} else {
+					p = temp[i]
+				}
+			}
+			p = strings.TrimSpace(p)
+			pressure := ConvertStringFloat32(p)
+			controllers.WritePressure(ip, pressure)
+		}
+	}
 	total_cpu, user_cpu, system_cpu, idle_cpu := createMetricsCpu()
 	total_memory, used_memory := createMetricsMemory()
-
-	controllers.WriteInDatabase(ip, countryCode, Region, City, temperature, pressure, humidity, total_cpu, user_cpu, system_cpu, idle_cpu, total_memory, used_memory)
+	controllers.WriteInDatabase(ip, total_cpu, user_cpu, system_cpu, idle_cpu, total_memory, used_memory)
 }
 
 func createMetricsCpu() (float32, float32, float32, float32) { //Create metrics of Cpu
@@ -64,24 +102,14 @@ func createMetricsMemory() (float32, float32) { //Create metrics of Memory
 	return float32(total_memory), float32(used_memory)
 }
 
-func ConvertStringFloat32(temperature, pressure, humidity string) (float32, float32, float32) {
+func ConvertStringFloat32(text string) float32 {
 
-	var t, p, h float64
+	var temp float64
 
-	t, err := strconv.ParseFloat(temperature, 32)
+	temp, err := strconv.ParseFloat(text, 32)
 	if err != nil {
-		log.Println("Converting error of temperature:", err)
+		log.Println("Converting error: ", err)
 	}
 
-	p, err = strconv.ParseFloat(pressure, 32)
-	if err != nil {
-		log.Println("Converting error of pressure:", err)
-	}
-
-	h, err = strconv.ParseFloat(humidity, 32)
-	if err != nil {
-		log.Println("Converting error of humidity:", err)
-	}
-
-	return float32(t), float32(p), float32(h)
+	return float32(temp)
 }
