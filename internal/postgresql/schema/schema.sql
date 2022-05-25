@@ -23,6 +23,8 @@ CREATE OR REPLACE FUNCTION view_temperature_row()
   RETURNS TRIGGER AS $$
     BEGIN
       DELETE FROM temperature where temperature = 0;
+      DELETE FROM temperature where temperature > 100;
+      DELETE FROM temperature where temperature < 8;
       RETURN NULL;
     END;
 $$

@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 6,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -233,7 +233,10 @@
               "mode": "off"
             }
           },
+          "decimals": 2,
           "mappings": [],
+          "max": 50,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -486,6 +489,6 @@
   "timezone": "",
   "title": "Temperature",
   "uid": "nKIppg9nz",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }

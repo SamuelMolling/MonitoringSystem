@@ -7,11 +7,14 @@ services:
   #   networks:
   #     - front
   #     - back
-  client-app:
-    container_name: client-container
-    image: client
-    links:
-      - server-app
+  # client-app:
+  #   container_name: client-container
+  #   image: client
+  #   privileged: true
+  #   links:
+  #     - server-app
+  #   volumes:
+  #     - /dev/tty.usbmodem1103:/dev/tty.usbmodem1103
   server-app:
     container_name: server-container
     image: server
@@ -20,11 +23,15 @@ services:
     links:
       - postgres
       - check-location-api
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   check-location-api:
     container_name: check-location-api-container
     image: check_location
     ports:
       - "3005:3005"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   grafana:
     image: grafana/grafana:latest
     container_name: grafana-container

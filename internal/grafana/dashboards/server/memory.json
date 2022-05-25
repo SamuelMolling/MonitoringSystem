@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": 3,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -161,40 +161,15 @@
           },
           "unit": "decgbytes"
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "104.28.63.131"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 9,
         "w": 24,
         "x": 0,
         "y": 4
       },
-      "id": 8,
+      "id": 11,
       "options": {
         "legend": {
           "calcs": [],
@@ -216,7 +191,7 @@
           "group": [],
           "metricColumn": "ip",
           "rawQuery": false,
-          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  used_memory/1000000000\nFROM memory\nORDER BY 1,2",
+          "rawSql": "SELECT\n  dia AS \"time\",\n  ip AS metric,\n  used_memory/1000000000\nFROM memory\nWHERE\n  $__timeFilter(dia)\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -231,7 +206,13 @@
           "table": "memory",
           "timeColumn": "dia",
           "timeColumnType": "timestamp",
-          "where": []
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
         }
       ],
       "title": "Used Memory for day",
@@ -271,7 +252,7 @@
         "h": 11,
         "w": 8,
         "x": 0,
-        "y": 16
+        "y": 13
       },
       "id": 6,
       "options": {
@@ -352,7 +333,7 @@
         "h": 11,
         "w": 8,
         "x": 8,
-        "y": 16
+        "y": 13
       },
       "id": 4,
       "options": {
@@ -433,7 +414,7 @@
         "h": 11,
         "w": 8,
         "x": 16,
-        "y": 16
+        "y": 13
       },
       "id": 2,
       "options": {
@@ -488,13 +469,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Memory Statistics",
   "uid": "v4Rojwu7z",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }

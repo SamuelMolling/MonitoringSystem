@@ -14,7 +14,7 @@ type Response struct { //https://mholt.github.io/json-to-go/
 }
 
 func GetCheckLocationAPI(ip string) (string, string, string) {
-	const Url = "http://127.0.0.1:3005/geo/"
+	const Url = "http://host.docker.internal:3005/geo/"
 
 	resp, err := http.Get(Url + ip)
 
