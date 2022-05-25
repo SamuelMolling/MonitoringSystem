@@ -45,7 +45,6 @@ func SendMetrics(netData string) {
 			}
 			t = strings.TrimSpace(t)
 			temperature := ConvertStringFloat32(t)
-			println("T:", temperature)
 			controllers.WriteTemperature(ip, temperature)
 		} else {
 			p := resp[i]

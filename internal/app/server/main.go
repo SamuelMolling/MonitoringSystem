@@ -29,8 +29,6 @@ func main() {
 			fmt.Println(err) //printa o erro caso dê erro
 			return
 		}
-		println(netData)
 		metricas.SendMetrics(string(netData))
-		println("ok")
 	}
 }

@@ -17,11 +17,12 @@ help: #https://dev.to/flpslv/using-makefiles-to-build-and-publish-docker-contain
 build:
 	cd internal/app/check-location/ && make build
 	cd internal/app/server/ && make build
+	cd internal/app/client_server/ && make build
 
 check:
 
 install-prerequisites:
-	docker pull timescale/timescaledb:latest-pg14
+	docker pull postgres
 	docker pull grafana/grafana
 	
 up:
