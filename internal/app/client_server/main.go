@@ -11,7 +11,7 @@ import (
 
 func main() {
 	config := &serial.Config{
-		Name:        "/dev/tty.usbmodem1103",
+		Name:        "/dev/tty.usbmodem2103",
 		Baud:        115200,
 		ReadTimeout: 1,
 		Size:        8,

@@ -4,45 +4,6 @@ import (
 	"server/db"
 )
 
-// type Location struct {
-// 	ip          string
-// 	countryCode string
-// 	regionCode  string
-// 	city        string
-// }
-
-// type Temperature struct {
-// 	Id          int
-// 	temperature float32
-// 	dia         string
-// 	location    *Location
-// }
-
-// type Pressure struct {
-// 	Id       int
-// 	pressure float32
-// 	dia      string
-// 	location *Location
-// }
-
-// type Memory struct {
-// 	Id           int
-// 	total_memory float32
-// 	used_memory  float32
-// 	dia          string
-// 	location     *Location
-// }
-
-// type Cpu struct {
-// 	Id         int
-// 	total_cpu  float32
-// 	user_cpu   float32
-// 	system_cpu float32
-// 	idle_cpu   float32
-// 	dia        string
-// 	location   *Location
-// }
-
 func InsertMetricsCPU(ip string, total_cpu, user_cpu, system_cpu, idle_cpu float32) {
 	db := db.ConnectDatabase()
 
