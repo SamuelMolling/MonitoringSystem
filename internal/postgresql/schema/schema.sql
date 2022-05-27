@@ -22,7 +22,6 @@ OWNED BY temperature.id;
 CREATE OR REPLACE FUNCTION view_temperature_row()
   RETURNS TRIGGER AS $$
     BEGIN
-      DELETE FROM temperature where temperature = 0;
       DELETE FROM temperature where temperature > 100;
       DELETE FROM temperature where temperature < 8;
       RETURN NULL;
@@ -50,7 +49,6 @@ OWNED BY pressure.id;
 CREATE OR REPLACE FUNCTION view_pressure_row()
   RETURNS TRIGGER AS $$
     BEGIN
-      DELETE FROM pressure where pressure = 0;
       DELETE FROM pressure where pressure < 100000;
       RETURN NULL;
     END;
