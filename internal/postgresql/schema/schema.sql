@@ -100,18 +100,3 @@ GRANT SELECT, INSERT, DELETE, UPDATE ON ALL TABLES IN SCHEMA public TO "app";
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO "app";
 
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO "grafana";
-
-CREATE OR REPLACE TRIGGER validate_temperature
-    AFTER INSERT ON temperature
-    FOR EACH ROW
-    EXECUTE FUNCTION view_temperature_row();
-
-
-CREATE OR REPLACE FUNCTION view_temperature_row()
-  RETURNS TRIGGER AS $$
-    BEGIN
-      DELETE FROM temperature where temperature = 0;
-      RETURN NULL;
-    END;
-$$
-LANGUAGE plpgsql;

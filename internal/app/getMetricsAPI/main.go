@@ -4,43 +4,33 @@ import (
 	"fmt"
 	"log"
 	getmetrics "main/pkg/getMetrics"
-	"main/utils"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
+	"net/http"
 
-	"github.com/gofiber/fiber/v2"
+	"github.com/gorilla/mux"
 )
 
-const idleTimeout = 5 * time.Second
-
 func main() {
-	app := fiber.New(fiber.Config{
-		IdleTimeout: idleTimeout,
-	})
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Não teste minha paciência!")
-	})
+	// Init the mux router
+	router := mux.NewRouter()
 
-	app.Get("/cpu", utils.Cache(10*time.Minute), getmetrics.GetMetricsCPU())
-	app.Get("/memory", utils.Cache(10*time.Minute), getmetrics.getMetricsMemory())
-	app.Get("/temperature", utils.Cache(10*time.Minute), getmetrics.getMetricsTemperature())
-	app.Get("/pressure", utils.Cache(10*time.Minute), getmetrics.getMetricsPressure())
-	app.Get("/locality", utils.Cache(10*time.Minute), getmetrics.getMetricsLocality())
+	// Route handles & endpoints
 
-	go func() {
-		if err := app.Listen(":8080"); err != nil {
-			log.Panic(err)
-		}
-	}()
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	// Get all metrics for a specific metric
+	router.HandleFunc("/api/cpu/get", getmetrics.GetMetricsCPU).Methods("GET")
+	router.HandleFunc("/api/memory/get", getmetrics.GetMetricsMemory).Methods("GET")
+	router.HandleFunc("/api/temperature/get", getmetrics.GetMetricsTemperature).Methods("GET")
+	router.HandleFunc("/api/pressure/get", getmetrics.GetMetricsPressure).Methods("GET")
+	router.HandleFunc("/api/locality/get", getmetrics.GetMetricsLocation).Methods("GET")
 
-	_ = <-c
-	fmt.Println("Gracefully shutting down...")
-	_ = app.Shutdown()
+	// Delete a specific metrics by the id
+	router.HandleFunc("/api/cpu/delete/{id}", getmetrics.DeletaCPU).Methods("DELETE")
+	router.HandleFunc("/api/memorys/delete/{id}", getmetrics.DeletaMemory).Methods("DELETE")
+	router.HandleFunc("/api/temperature/delete/{id}", getmetrics.DeletaTemperature).Methods("DELETE")
+	router.HandleFunc("/api/pressure/delete/{id}", getmetrics.DeletaPressure).Methods("DELETE")
 
-	fmt.Println("App was successful shutdown.")
+	// serve the app
+	fmt.Println("Server at 8000")
+	log.Fatal(http.ListenAndServe(":8000", router))
+
 }

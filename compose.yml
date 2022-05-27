@@ -7,14 +7,15 @@ services:
   #   networks:
   #     - front
   #     - back
-  # client-app:
-  #   container_name: client-container
-  #   image: client
-  #   privileged: true
-  #   links:
-  #     - server-app
-  #   volumes:
-  #     - /dev/tty.usbmodem1103:/dev/tty.usbmodem1103
+  getmetricsapi-container:
+    container_name: getmetricsapi-container
+    image: getmetricsapi
+    ports:
+      - "8000:8000"
+    links:
+      - postgres
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   server-app:
     container_name: server-container
     image: server

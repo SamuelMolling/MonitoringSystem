@@ -4,22 +4,17 @@ GRAFANA_DATA=internal/grafana/data
 #TESTE
 
 help: #https://dev.to/flpslv/using-makefiles-to-build-and-publish-docker-containers-7c8
-	    @echo "Makefile arguments:"
-	    @echo ""
-	    @echo "alpver - Alpine Version"
-	    @echo "kctlver - kubectl version"
-	    @echo ""
 	    @echo "Makefile commands:"
-	    @echo "build"
-	    @echo "destroy"
+		@echo "build"
+	    @echo "install-prerequisites"
 	    @echo "up"
+	    @echo "destroy"
 
 build:
 	cd internal/app/check-location/ && make build
 	cd internal/app/server/ && make build
 	cd internal/app/client_server/ && make build
-
-check:
+	cd internal/app/getMetricsAPI/ && make build
 
 install-prerequisites:
 	docker pull postgres
