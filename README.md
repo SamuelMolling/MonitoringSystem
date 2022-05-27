@@ -20,7 +20,7 @@ https://docs.docker.com/desktop/windows/install/
 
 Make a pull 
 ```bash
-make pull
+make install-prerequisites
 ```
 
 Make a build 

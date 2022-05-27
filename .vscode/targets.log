@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Thu May 26 23:22:05 2022
+# Make data base, printed on Fri May 27 09:11:39 2022
 
 # Variables
 
@@ -42,13 +42,11 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-3ca493eb-1645-4ffa-9207-63b57919dd46.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-6afa3eca-6310-40ff-9919-fe6caf7d5e36.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/samuelmolling/.asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
-# environment
-LaunchInstanceID = 511876AB-82AE-4B44-8779-7734919B76E0
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -56,7 +54,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.1kzgFVIXSs/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GqObBbQSQ1/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -139,8 +137,6 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 18a81
 # automatic
 ^F = $(notdir $^)
 # default
@@ -152,9 +148,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 42568
+VSCODE_PID = 1203
 # variable set hash-table stats:
-# Load=71/1024=7%, Rehash=0, Collisions=1/94=1%
+# Load=69/1024=7%, Rehash=0, Collisions=1/92=1%
 
 # Pattern-specific Variable Values
 
@@ -162,7 +158,7 @@ VSCODE_PID = 42568
 
 # Directories
 
-# . (device 16777233, inode 10527339): 12 files, no impossibilities.
+# . (device 16777231, inode 10527339): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
 
@@ -185,7 +181,7 @@ up:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 29):
+#  commands to execute (from `makefile', line 24):
 	docker compose up
 	
 
@@ -198,7 +194,7 @@ up:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-25 12:25:27
+#  Last modified 2022-05-26 23:35:34
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -208,10 +204,11 @@ build:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 18):
+#  commands to execute (from `makefile', line 14):
 	cd internal/app/check-location/ && make build
 	cd internal/app/server/ && make build
 	cd internal/app/client_server/ && make build
+	cd internal/app/getMetricsAPI/ && make build
 	
 
 help:
@@ -219,15 +216,11 @@ help:
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `makefile', line 7):
-	@echo "Makefile arguments:"
-	@echo ""
-	@echo "alpver - Alpine Version"
-	@echo "kctlver - kubectl version"
-	@echo ""
 	@echo "Makefile commands:"
 	@echo "build"
-	@echo "destroy"
+	@echo "install-prerequisites"
 	@echo "up"
+	@echo "destroy"
 	
 
 # Not a target:
@@ -240,7 +233,7 @@ install-prerequisites:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 25):
+#  commands to execute (from `makefile', line 20):
 	docker pull postgres
 	docker pull grafana/grafana
 	
@@ -249,19 +242,14 @@ destroy:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 31):
+#  commands to execute (from `makefile', line 26):
 	docker compose down --volumes
 	rm -rf $(DB_DATA)/
 	rm -rf $(GRAFANA_DATA)/*
 	
 
-check:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
 # files hash-table stats:
-# Load=10/1024=1%, Rehash=0, Collisions=0/22=0%
+# Load=9/1024=1%, Rehash=0, Collisions=0/21=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -273,7 +261,7 @@ check:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu May 26 23:22:05 2022
+# Finished Make data base on Fri May 27 09:11:39 2022
 
  
 make: *** No rule to make target `all'.  Stop.
