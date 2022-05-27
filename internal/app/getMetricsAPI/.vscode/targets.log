@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Fri May 27 15:57:51 2022
+# Make data base, printed on Fri May 27 14:47:12 2022
 
 # Variables
 
@@ -27,15 +24,13 @@ VSCODE_LOG_NATIVE = false
 # automatic
 @F = $(notdir $@)
 # makefile
-CURDIR := /Users/samuelmolling/Documents/scripts/github/MonitoringSystem
+CURDIR := /Users/samuelmolling/Documents/scripts/github/MonitoringSystem/internal/app/getMetricsAPI
 # makefile
 SHELL = /bin/sh
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
-# makefile (from `makefile', line 1)
-DB_DATA = internal/postgresql/data
 # makefile (from `makefile', line 1)
 MAKEFILE_LIST :=  makefile
 # environment
@@ -47,7 +42,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-97949c3f-7e69-4590-9325-fe1de222fbc4.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-d112efd2-76f5-4b78-9edc-cbb01f5c723d.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -69,7 +64,7 @@ SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.GqObBbQSQ1/Listeners
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /Users/samuelmolling/Documents/scripts/github/MonitoringSystem
+PWD = /Users/samuelmolling/Documents/scripts/github/MonitoringSystem/internal/app/getMetricsAPI
 # environment
 HOMEBREW_CELLAR = /opt/homebrew/Cellar
 # environment
@@ -105,11 +100,9 @@ MAKE_VERSION := 3.81
 # environment
 USER = samuelmolling
 # makefile
-.DEFAULT_GOAL := help
+.DEFAULT_GOAL := rm
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
-# makefile (from `makefile', line 2)
-GRAFANA_DATA = internal/grafana/data
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # default
@@ -159,7 +152,7 @@ LANG = C
 # environment
 VSCODE_PID = 1203
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=2/95=2%
+# Load=70/1024=7%, Rehash=0, Collisions=2/93=2%
 
 # Pattern-specific Variable Values
 
@@ -167,9 +160,9 @@ VSCODE_PID = 1203
 
 # Directories
 
-# . (device 16777231, inode 10527339): 12 files, no impossibilities.
+# . (device 16777231, inode 11538671): 9 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 9 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -186,12 +179,12 @@ all:
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
-up:
+rm:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 24):
-	docker compose up
+#  commands to execute (from `makefile', line 2):
+	docker rm getmetricsapi
 	
 
 # Not a target:
@@ -203,7 +196,7 @@ up:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-26 23:35:34
+#  Last modified 2022-05-26 23:24:20
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -213,23 +206,8 @@ build:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 14):
-	cd internal/app/check-location/ && make build
-	cd internal/app/server/ && make build
-	cd internal/app/client_server/ && make build
-	cd internal/app/getMetricsAPI/ && make build
-	
-
-help:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 #  commands to execute (from `makefile', line 7):
-	@echo "Makefile commands:"
-	@echo "build"
-	@echo "install-prerequisites"
-	@echo "up"
-	@echo "destroy"
+	docker build -t getmetricsapi:latest .
 	
 
 # Not a target:
@@ -238,27 +216,16 @@ help:
 #  Modification time never checked.
 #  File has not been updated.
 
-install-prerequisites:
+run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 20):
-	docker pull postgres
-	docker pull grafana/grafana
-	
-
-destroy:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  commands to execute (from `makefile', line 26):
-	docker compose down --volumes
-	rm -rf $(DB_DATA)/
-	rm -rf $(GRAFANA_DATA)/*
+#  commands to execute (from `makefile', line 4):
+	docker run --rm --name getmetricsapi -p 8000:8000 getmetricsapi:latest
 	
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/21=0%
+# Load=7/1024=1%, Rehash=0, Collisions=0/19=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
@@ -270,6 +237,8 @@ destroy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri May 27 15:57:51 2022
+# Finished Make data base on Fri May 27 14:47:12 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+
