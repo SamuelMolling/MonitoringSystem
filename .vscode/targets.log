@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri May 27 15:57:51 2022
+# Make data base, printed on Sat May 28 12:49:30 2022
 
 # Variables
 
@@ -31,6 +31,7 @@ CURDIR := /Users/samuelmolling/Documents/scripts/github/MonitoringSystem
 # makefile
 SHELL = /bin/sh
 # environment
+ 
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
@@ -47,7 +48,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-97949c3f-7e69-4590-9325-fe1de222fbc4.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-82a118b9-543e-46f4-ad1a-85f2a79310f1.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -136,6 +137,7 @@ HOMEBREW_PREFIX = /opt/homebrew
 +F = $(notdir $+)
 # environment
 HOMEBREW_REPOSITORY = /opt/homebrew
+ 
 # environment
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
@@ -157,7 +159,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1203
+VSCODE_PID = 42460
 # variable set hash-table stats:
 # Load=72/1024=7%, Rehash=0, Collisions=2/95=2%
 
@@ -270,6 +272,6 @@ destroy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri May 27 15:57:51 2022
+# Finished Make data base on Sat May 28 12:49:30 2022
 
  
