@@ -2,37 +2,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: metrics-api-deployment
 spec:
     replicas: 1
     template:
       metadata:
-        name: nginx
+        name: metrics-api
         labels:
-          app: nginx
+          app: metrics-api
       spec:
         containers:
-          - name: nginx-container
-            image: nginx:latest
+          - name: metrics-api-container
+            image: getmetricsapi:latest
+            imagePullPolicy: Never
             ports:
-              - containerPort: 80
+              - containerPort: 8000
             resources:
                 requests:
-                  cpu:  1m
+                  cpu:  10m
                   memory: 10Mi
     selector:
         matchLabels:
-          app: nginx
+          app: metrics-api
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-svc
+  name: metrics-api-svc
 spec:
   type: NodePort
   ports:
-    - port: 80
-      nodePort: 30000
+    - port: 8000
+      nodePort: 30002
   selector:
-    app: nginx
+    app: metrics-api
 ---

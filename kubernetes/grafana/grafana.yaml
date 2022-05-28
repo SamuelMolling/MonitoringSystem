@@ -15,7 +15,7 @@ kind: Deployment
 metadata:
   labels:
     app: grafana
-  name: grafana
+  name: grafana-deployment
 spec:
   selector:
     matchLabels:
@@ -59,6 +59,9 @@ spec:
             requests:
               cpu: 250m
               memory: 750Mi
+            limits:
+              memory: "500m"
+              cpu: "1000Mi"
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana-pv
@@ -75,6 +78,6 @@ spec:
   type: NodePort
   ports:
     - port: 3000
-      nodePort: 30001
+      nodePort: 30000
   selector:
-    app: grafana
+    app: grafana-deployment
