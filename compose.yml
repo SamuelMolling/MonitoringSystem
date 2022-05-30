@@ -7,15 +7,15 @@ services:
   #   networks:
   #     - front
   #     - back
-  getmetricsapi-container:
-    container_name: getmetricsapi-container
-    image: getmetricsapi
-    ports:
-      - "8000:8000"
-    links:
-      - postgres
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # getmetricsapi-container:
+  #   container_name: getmetricsapi-container
+  #   image: getmetricsapi
+  #   ports:
+  #     - "8000:8000"
+  #   links:
+  #     - postgres
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
   server-app:
     container_name: server-container
     image: server
@@ -23,16 +23,16 @@ services:
       - "1234:1234"
     links:
       - postgres
-      - check-location-api
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  check-location-api:
-    container_name: check-location-api-container
-    image: check_location
-    ports:
-      - "3005:3005"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      # - check-location-api
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+  # check-location-api:
+  #   container_name: check-location-api-container
+  #   image: check_location
+  #   ports:
+  #     - "3005:3005"
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
   grafana:
     image: grafana/grafana:latest
     container_name: grafana-container
