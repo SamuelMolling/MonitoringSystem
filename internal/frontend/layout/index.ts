@@ -1,0 +1,1 @@
+export { default as InfoScreenLayout } from './info-screen';

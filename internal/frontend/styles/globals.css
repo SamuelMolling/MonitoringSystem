@@ -1,0 +1,138 @@
+@import 'variables.css';
+@import 'antd/dist/antd.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	@apply p-0;
+	@apply m-0;
+	@apply text-base;
+	@apply bg-background;
+	@apply font-montserrat;
+	@apply font-normal;
+}
+
+body {
+	@apply overscroll-y-auto;
+}
+
+a {
+	@apply no-underline;
+	transition: none;
+}
+
+* {
+	@apply box-border;
+}
+
+img {
+	@apply h-full;
+	@apply object-contain;
+}
+
+.ant-carousel {
+	@apply text-white;
+  @apply text-base;
+}
+
+h1 {
+	@apply text-primary;
+	@apply font-bold;
+	@apply text-x30;
+	@apply leading-9;
+	@apply flex;
+	@apply pt-4;
+}
+
+h1, h2 {
+  scroll-margin-top: 160px;
+}
+
+h2 {
+	@apply text-green;
+	@apply text-x26;
+	@apply leading-8;
+	@apply mb-4;
+}
+
+h3 {
+	@apply text-x24;
+	@apply text-primary;
+	@apply leading-7;
+	@apply w-full;
+	@apply mt-6;
+	@apply mb-5;
+}
+
+p {
+	@apply text-secondary;
+	@apply text-sm;
+	@apply mb-6;
+	@apply text-justify;
+}
+
+input {
+	@apply font-montserrat;
+}
+
+.ant-dropdown-menu {
+	@apply p-6;
+}
+
+.ant-dropdown-menu-item-group-title,
+.ant-menu-item-group-title {
+	@apply text-base;
+	@apply text-primary;
+	@apply leading-4;
+	@apply font-bold;
+	@apply p-0;
+}
+
+.ant-dropdown-menu-item-group-list {
+	@apply m-0;
+	@apply pt-2;
+	@apply pb-4;
+}
+
+.ant-dropdown-menu-item {
+	@apply p-0;
+	width: 214px;
+}
+
+.ant-dropdown-menu-item:hover {
+	@apply bg-white;
+}
+
+.ant-dropdown-menu-title-content:hover div,
+.ant-dropdown-menu-title-content:hover a {
+	@apply text-green;
+	@apply font-bold;
+}
+
+.ant-dropdown-menu-item-selected div {
+	@apply bg-white;
+	@apply font-bold;
+	@apply text-green;
+}
+
+@media (min-width: 641px) {
+	h1, h2 {
+		scroll-margin-top: 180px;
+	}
+	h3 {
+		@apply text-x30;
+		@apply leading-9;
+	}
+	p {
+		@apply text-base;
+	}
+}
+
+@media (min-width: 769px) {
+	h1, h2 {
+		scroll-margin-top: 28px;
+	}
+}

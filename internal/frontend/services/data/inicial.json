@@ -1,0 +1,22 @@
+{
+	"carrossel": [
+		{
+			"routeImage": "/images/banner-inicial-01.png",
+			"tituloImagem": "Título Banner #01",
+			"titulo": "Aplicação Inteligente",
+			"subtitulo": "Monitore em tempo real as informações que você precisa"
+		},
+		{
+			"routeImage": "/images/banner-inicial-02.jpg",
+			"tituloImagem": "Título Banner #02",
+			"titulo": "Gerencie Aqui",
+			"subtitulo": "Faça as devidas correções e edições dos seus dados por aqui"
+		},
+		{
+			"routeImage": "/images/banner-inicial-03.png",
+			"tituloImagem": "Título Banner #03",
+			"titulo": "Visualize suas Informações",
+			"subtitulo": "Acesse suas informações diretamente do portal"
+		}
+	]
+}

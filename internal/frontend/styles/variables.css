@@ -1,0 +1,86 @@
+:root {
+	--color-primary: #555555;
+	--color-secondary: #f58c26;
+	--color-background: #FFFFFF;
+	--color-orange: #f7b024;
+	--color-white: #FFFFFF;
+	--color-green: #007A37;
+	--color-blue: #0089E9;
+	--color-black: #000000;
+	--color-background-scrollbar: #F1F1F1;
+	--color-scrollbar: #C1C1C1;
+	--color-dark: #1D1E1F;
+	--color-bright: #A7A7A7;
+	--color-background-blue: #E4F6FF;
+	--color-red: #EC1313;
+	--color-background-get: #91daff;
+	--color-background-post: #9eff91;
+	--color-background-put: #ffef91;
+	--color-greyish: #2D394E;
+	--color-grey: rgba(45, 57, 78, 0.6);
+	--color-background-pop-up: rgba(0, 0, 0, 0.2);
+	--color-dark-blue: #19212E;
+	--color-icon-check: #A2FCA2;
+	--color-icon-error: #DF5555;
+	--color-light-gray: #F8F8F8;
+	--color-grey-table: #E7E6E6;
+	--color-dark-grey-table: #767171;
+	
+	--font-size-xss: 10px;
+	--font-size-xs: 12px;
+	--font-size-x13: 13px;
+	--font-size-sm: 14px;
+	--font-size-base: 16px;
+	--font-size-lg: 18px;
+	--font-size-xl: 22px;
+	--font-size-x24: 24px;
+	--font-size-x26: 26px;
+	--font-size-x30: 30px;
+	--font-size-x36: 36px;
+	--font-size-x42: 42px;
+
+	--min-width-x18: 18px;
+	--min-width-x271: 271px;
+	--min-width-x284: 284px;
+
+	--max-width-x26: 26px;
+	--max-width-x40: 40px;
+	--max-width-x411: 411px;
+	--max-width-x573: 573px;
+	--max-width-x530: 530px;
+	--max-width-x684: 684px;
+	--max-width-x1320: 1320px;
+
+	--width-x66: 66px;
+	--width-x72: 72px;
+	--width-x77: 77px;
+	--width-x85: 85px;
+	--width-x171: 171px;
+	--width-x271: 271px;
+	--width-x284: 284px;
+	--width-x438: 438px;
+	--width-x812: 812px;
+
+	--min-height-x18: 18px;
+	--min-height-x32: 32px;
+	--min-height-x65: 65px;
+	--min-height-x105: 105px;
+	--min-height-x85: 85px;
+	--min-height-x105: 105px;
+
+	--height-x26: 26px;
+	--height-x75: 75px;
+	--height-x77: 77px;
+	--height-x85: 85px;
+	--height-x90: 90px;
+	--height-x100: 100px;
+	--height-x139: 139px;
+	--height-x149: 149px;
+	--height-x186: 186px;
+	--height-x200: 200px;
+	--height-x250: 250px;
+	--height-x340: 340px;
+	--height-x350: 350px;
+
+	--right-x-80vw: -80vw;
+}
