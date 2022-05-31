@@ -5,6 +5,7 @@ import { CSpin, CTable } from '../../components';
 import { NotificationWarning } from '../../utils/constants';
 import router from 'next/router';
 import { InfoScreenLayout } from '../../layout';
+import serverService from '../../services/server-service';
 
 const TabelasMonitoramento = () => {
 	const [loading, setLoading] = useState(true);
@@ -44,29 +45,41 @@ const TabelasMonitoramento = () => {
 						key: "id",
 					},
 					{
-						title: "Dado",
-						dataIndex: "dado",
-						key: "dado",
+						title: "IP",
+						dataIndex: "ip",
+						key: "ip",
+					},
+					{
+						title: "Total",
+						dataIndex: "total_cpu",
+						key: "total",
+					},
+					{
+						title: "User",
+						dataIndex: "user_cpu",
+						key: "user",
+					},
+					{
+						title: "System",
+						dataIndex: "system_cpu",
+						key: "sistem",
+					},
+					{
+						title: "Idle",
+						dataIndex: "idle_cpu",
+						key: "idle",
+					},
+					{
+						title: "Day",
+						dataIndex: "dia",
+						key: "day",
 					},
 				]
 			}
 		];
 		setColumns(columnsCPU);
-		const dataCPU = [
-			{
-				key: 1,
-				dado: "10",
-			},
-			{
-				key: 2,
-				dado: "20",
-			},
-			{
-				key: 3,
-				dado: "30",
-			},
-		];
-		setData(dataCPU);
+		const resp = await serverService.getCPU(); 
+		setData(resp);
 	};
 
 	const getDateMemory = async () => {
@@ -81,29 +94,31 @@ const TabelasMonitoramento = () => {
 						key: "id",
 					},
 					{
-						title: "Dado",
-						dataIndex: "dado",
-						key: "dado",
+						title: "IP",
+						dataIndex: "ip",
+						key: "ip",
+					},
+					{
+						title: "Total",
+						dataIndex: "total_memory",
+						key: "total",
+					},
+					{
+						title: "Used",
+						dataIndex: "used_memory",
+						key: "used",
+					},
+					{
+						title: "Day",
+						dataIndex: "dia",
+						key: "day",
 					},
 				]
 			}
 		];
 		setColumns(columnsMemoria);
-		const dataMemoria = [
-			{
-				key: 1,
-				dado: "10",
-			},
-			{
-				key: 2,
-				dado: "20",
-			},
-			{
-				key: 3,
-				dado: "30",
-			},
-		];
-		setData(dataMemoria);
+		const resp = await serverService.getMemory();
+		setData(resp);
 	};
 
 	const getDateTemperature = async () => {
@@ -118,29 +133,26 @@ const TabelasMonitoramento = () => {
 						key: "id",
 					},
 					{
-						title: "Dado",
-						dataIndex: "dado",
-						key: "dado",
+						title: "IP",
+						dataIndex: "ip",
+						key: "ip",
+					},
+					{
+						title: "Temperature",
+						dataIndex: "temperature",
+						key: "temperature",
+					},
+					{
+						title: "Day",
+						dataIndex: "dia",
+						key: "day",
 					},
 				]
 			}
 		];
 		setColumns(columnsTemperatura);
-		const dataTemperatura = [
-			{
-				key: 1,
-				dado: "10",
-			},
-			{
-				key: 2,
-				dado: "20",
-			},
-			{
-				key: 3,
-				dado: "30",
-			},
-		];
-		setData(dataTemperatura);
+		const resp = await serverService.getTemperature();
+		setData(resp);
 	};
 
 	const getDatePressure = async () => {
@@ -155,29 +167,26 @@ const TabelasMonitoramento = () => {
 						key: "id",
 					},
 					{
-						title: "Dado",
-						dataIndex: "dado",
-						key: "dado",
+						title: "IP",
+						dataIndex: "ip",
+						key: "ip",
+					},
+					{
+						title: "Pressure",
+						dataIndex: "pressure",
+						key: "pressure",
+					},
+					{
+						title: "Day",
+						dataIndex: "dia",
+						key: "day",
 					},
 				]
 			}
 		];
 		setColumns(columnsPressao);
-		const dataPressao = [
-			{
-				key: 1,
-				dado: "10",
-			},
-			{
-				key: 2,
-				dado: "20",
-			},
-			{
-				key: 3,
-				dado: "30",
-			},
-		];
-		setData(dataPressao);
+		const resp = await serverService.getPressure();
+		setData(resp);
 	};
 
 	const getDateLocalization = async () => {
@@ -187,40 +196,37 @@ const TabelasMonitoramento = () => {
 				children :
 				[
 					{
-						title: "ID",
-						dataIndex: "key",
-						key: "id",
+						title: "IP",
+						dataIndex: "ip",
+						key: "ip",
 					},
 					{
-						title: "Dado",
-						dataIndex: "dado",
-						key: "dado",
+						title: "ContryCode",
+						dataIndex: "countryCode",
+						key: "countryCode",
+					},
+					{
+						title: "RegionCode",
+						dataIndex: "regionCode",
+						key: "regionCode",
+					},
+					{
+						title: "City",
+						dataIndex: "city",
+						key: "city",
 					},
 				]
 			}
 		];
 		setColumns(columnsLocalizacao);
-		const dataLocalizacao = [
-			{
-				key: 1,
-				dado: "10",
-			},
-			{
-				key: 2,
-				dado: "20",
-			},
-			{
-				key: 3,
-				dado: "30",
-			},
-		];
-		setData(dataLocalizacao);
+		const resp = await serverService.getLocation();
+		setData(resp);
 	};
 
 	const getTable = async () => {
 		switch (current) {
 			case "1":
-				getDateCPU();
+				await getDateCPU();
 				break;
 			case "2":
 				await getDateMemory();
