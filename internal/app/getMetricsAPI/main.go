@@ -7,7 +7,15 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
+
+func Cors(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=ascii")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type,access-control-allow-origin, access-control-allow-headers")
+	w.Write([]byte("Hello, World!"))
+}
 
 func main() {
 
@@ -17,6 +25,7 @@ func main() {
 	// Route handles & endpoints
 
 	// Get all metrics for a specific metric
+
 	router.HandleFunc("/api/cpu/get", getmetrics.GetMetricsCPU).Methods("GET")
 	router.HandleFunc("/api/memory/get", getmetrics.GetMetricsMemory).Methods("GET")
 	router.HandleFunc("/api/temperature/get", getmetrics.GetMetricsTemperature).Methods("GET")
@@ -30,7 +39,9 @@ func main() {
 	router.HandleFunc("/api/pressure/delete/{id}", getmetrics.DeletaPressure).Methods("DELETE")
 
 	// serve the app
+	handler := cors.AllowAll().Handler(router)
+
 	fmt.Println("Server at 8000")
-	log.Fatal(http.ListenAndServe(":8000", router))
+	log.Fatal(http.ListenAndServe(":8000", handler))
 
 }

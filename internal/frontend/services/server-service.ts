@@ -22,7 +22,7 @@ const ServerService = {
 	},
 
 	async getLocation() {
-		const response = await API.get<any, any>('/api/location/get');
+		const response = await API.get<any, any>('/api/locality/get');
 		return response?.location;
 	},
 };

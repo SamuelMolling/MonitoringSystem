@@ -10,6 +10,7 @@ require (
 	github.com/gorilla/schema v1.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
+	github.com/rs/cors v1.8.2 // indirect
 )
 
 require (

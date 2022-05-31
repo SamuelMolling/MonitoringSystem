@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem/internal/app/server'
+docker rm server
+make: Leaving directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem/internal/app/server'
+ 
