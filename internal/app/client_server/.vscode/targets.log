@@ -6,15 +6,22 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Mon May 30 00:08:12 2022
+
+# Make data base, printed on Wed Jun  1 10:31:04 2022
 
 # Variables
 
+# environment
+VSCODE_GIT_ASKPASS_MAIN = /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -40,15 +47,15 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
-INFOPATH = /opt/homebrew/share/info:
+INFOPATH = /opt/homebrew/share/info:/opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-44a009a7-afe7-4bb0-b615-af2c8245f3d6.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-d26e9c1e-1d79-48ea-9c3d-af97d1acfe75.sock
 # environment
-VSCODE_CWD = /
+VSCODE_CWD = /Users/samuelmolling/Documents/scripts/github/MonitoringSystem
 # environment
 GOPROXY = https://proxy.golang.org,direct
 # environment
-PATH = /Users/samuelmolling/.asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+PATH = /Users/samuelmolling/.asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/opt/homebrew/bin:/opt/homebrew/sbin
 # environment
 GOPATH = /Users/samuelmolling/go
 # environment
@@ -58,7 +65,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.QvCilf6ong/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.70xD6tV6U6/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -70,13 +77,15 @@ HOMEBREW_CELLAR = /opt/homebrew/Cellar
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-MANPATH = /opt/homebrew/share/man::
+MANPATH = /opt/homebrew/share/man:/usr/share/man:/usr/local/share/man:/opt/homebrew/share/man:
 # environment
 GOMODCACHE = /Users/samuelmolling/go/pkg/mod
 # environment
 HOME = /Users/samuelmolling
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# environment
+VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = /Users/samuelmolling/Library/Application Support/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
@@ -88,13 +97,17 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
+MAKELEVEL := 0
+# environment
 XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
 # environment
-SHLVL = 1
+SHLVL = 3
 # default
 MAKE_VERSION := 3.81
 # environment
@@ -105,6 +118,10 @@ USER = samuelmolling
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# environment
+VSCODE_GIT_ASKPASS_EXTRA_ARGS = --ms-enable-electron-run-as-node
+# environment
+TERM_PROGRAM = vscode
 # default
 .VARIABLES := 
 # environment
@@ -113,6 +130,9 @@ TMPDIR = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/
 *F = $(notdir $*)
 # environment
 VSCODE_IPC_HOOK = /Users/samuelmolling/Library/Application Support/Code/1.67.2-main.sock
+ 
+# environment
+VSCODE_GIT_ASKPASS_NODE = /Applications/Visual Studio Code.app/Contents/MacOS/Electron
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -120,7 +140,9 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.10011367.10011373
+TERM_PROGRAM_VERSION = 1.67.2
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.10011367.10011373.EF503D33-CF13-43E4-8B89-0B6C6440C0BA
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -133,6 +155,8 @@ HOMEBREW_REPOSITORY = /opt/homebrew
 __CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
 COMMAND_MODE = unix2003
+# environment
+GIT_ASKPASS = /Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
 # default
 MAKEFILES := 
 # automatic
@@ -146,13 +170,15 @@ SUFFIXES :=
 # environment
 ASDF_DIR = /opt/homebrew/opt/asdf/libexec
 # environment
-MAKELEVEL := 0
+VSCODE_GIT_IPC_HANDLE = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-git-46ebea20f9.sock
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1271
+TERM = xterm-256color
+# environment
+VSCODE_PID = 7921
 # variable set hash-table stats:
-# Load=70/1024=7%, Rehash=0, Collisions=2/93=2%
+# Load=81/1024=8%, Rehash=0, Collisions=4/104=4%
 
 # Pattern-specific Variable Values
 
@@ -160,7 +186,7 @@ VSCODE_PID = 1271
 
 # Directories
 
-# . (device 16777233, inode 10527443): 8 files, no impossibilities.
+# . (device 16777232, inode 10527443): 8 files, no impossibilities.
 
 # 8 files, no impossibilities in 1 directories.
 
@@ -237,8 +263,6 @@ run:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon May 30 00:08:12 2022
+# Finished Make data base on Wed Jun  1 10:31:04 2022
 
  
-make: *** No rule to make target `all'.  Stop.
-

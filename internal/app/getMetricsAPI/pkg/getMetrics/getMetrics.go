@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"main/pkg/db"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -54,9 +55,13 @@ type Cpu struct {
 }
 
 func GetMetricsCPU(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	locationId := params["id"]
+
+	number, err := strconv.ParseUint(locationId, 10, 32)
 	db := db.ConnectDatabase()
 
-	selectCPU, err := db.Query("select * from cpu")
+	selectCPU, err := db.Query("select * from cpu offset $1 limit 100", int(number)*100)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -89,9 +94,13 @@ func GetMetricsCPU(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetMetricsMemory(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	locationId := params["id"]
+
+	number, err := strconv.ParseUint(locationId, 10, 32)
 	db := db.ConnectDatabase()
 
-	selectmemory, err := db.Query("select * from memory")
+	selectmemory, err := db.Query("select * from memory offset $1 limit 100", int(number)*100)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -123,9 +132,13 @@ func GetMetricsMemory(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetMetricsPressure(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	locationId := params["id"]
+
+	number, err := strconv.ParseUint(locationId, 10, 32)
 	db := db.ConnectDatabase()
 
-	selectpressure, err := db.Query("select * from pressure")
+	selectpressure, err := db.Query("select * from pressure offset $1 limit 100", int(number)*100)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -155,9 +168,14 @@ func GetMetricsPressure(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetMetricsTemperature(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	locationId := params["id"]
+
+	number, err := strconv.ParseUint(locationId, 10, 32)
+
 	db := db.ConnectDatabase()
 
-	selectTemperature, err := db.Query("select * from temperature")
+	selectTemperature, err := db.Query("select * from temperature offset $1 limit 100", int(number)*100)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -188,9 +206,14 @@ func GetMetricsTemperature(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetMetricsLocation(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	locationId := params["id"]
+
+	number, err := strconv.ParseUint(locationId, 10, 32)
+
 	db := db.ConnectDatabase()
 
-	selectlocation, err := db.Query("select * from locality")
+	selectlocation, err := db.Query("select * from locality offset $1 limit 100", int(number)*100)
 	if err != nil {
 		panic(err.Error())
 	}

@@ -26,11 +26,11 @@ func main() {
 
 	// Get all metrics for a specific metric
 
-	router.HandleFunc("/api/cpu/get", getmetrics.GetMetricsCPU).Methods("GET")
-	router.HandleFunc("/api/memory/get", getmetrics.GetMetricsMemory).Methods("GET")
-	router.HandleFunc("/api/temperature/get", getmetrics.GetMetricsTemperature).Methods("GET")
-	router.HandleFunc("/api/pressure/get", getmetrics.GetMetricsPressure).Methods("GET")
-	router.HandleFunc("/api/locality/get", getmetrics.GetMetricsLocation).Methods("GET")
+	router.HandleFunc("/api/cpu/get/{id}", getmetrics.GetMetricsCPU).Methods("GET")
+	router.HandleFunc("/api/memory/get/{id}", getmetrics.GetMetricsMemory).Methods("GET")
+	router.HandleFunc("/api/temperature/get/{id}", getmetrics.GetMetricsTemperature).Methods("GET")
+	router.HandleFunc("/api/pressure/get/{id}", getmetrics.GetMetricsPressure).Methods("GET")
+	router.HandleFunc("/api/locality/get/{id}", getmetrics.GetMetricsLocation).Methods("GET")
 
 	// Delete a specific metrics by the id
 	router.HandleFunc("/api/cpu/delete/{id}", getmetrics.DeletaCPU).Methods("DELETE")
