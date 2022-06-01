@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem/internal/app/check-location'
+docker rm check_location
+make: Leaving directory `/Users/samuelmolling/Documents/scripts/github/MonitoringSystem/internal/app/check-location'
+ 
