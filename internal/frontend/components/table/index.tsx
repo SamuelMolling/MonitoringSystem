@@ -11,6 +11,7 @@ const CTable = ({dataSource, columns, selectionType, selected, service}: CTableP
   }, [service])
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    console.log(newSelectedRowKeys)
     selected(newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -20,13 +21,21 @@ const CTable = ({dataSource, columns, selectionType, selected, service}: CTableP
     onChange: onSelectChange,
   };
 
+  const handleSelection = () => {
+    if (service != "5") {
+      return (
+        {
+          type: selectionType,
+          preserveSelectedRowKeys: false,
+          ...rowSelection,
+        }
+      )
+    }
+  }
+
   return (
     <STable
-      rowSelection={{
-        type: selectionType,
-        preserveSelectedRowKeys: false,
-        ...rowSelection,
-      }}
+      rowSelection={handleSelection()}
       columns={columns}
       dataSource={dataSource}
     />

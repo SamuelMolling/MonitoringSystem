@@ -86,7 +86,8 @@ func GetMetricsCPU(w http.ResponseWriter, r *http.Request) {
 		p.Idle_cpu = idle_cpu
 		p.Dia = dia
 
-		cpu = append(cpu, p)
+		cpu = append(cpu, Cpu{Id: id, Ip: ip, Total_cpu: total_cpu, User_cpu: user_cpu, System_cpu: system_cpu, Idle_cpu: idle_cpu, Dia: dia})
+
 	}
 	defer db.Close()
 	var response = JsonResponse{Cpu: cpu}
@@ -123,7 +124,6 @@ func GetMetricsMemory(w http.ResponseWriter, r *http.Request) {
 		p.Used_memory = used_memory
 		p.Dia = dia
 
-		memory = append(memory, p)
 		memory = append(memory, Memory{Id: id, Total_memory: total_memory / 1000000000, Used_memory: used_memory / 1000000000, Ip: ip, Dia: dia})
 	}
 	defer db.Close()
@@ -198,7 +198,6 @@ func GetMetricsTemperature(w http.ResponseWriter, r *http.Request) {
 		p.Dia = dia
 
 		temperatura = append(temperatura, Temperature{Id: id, Temperature: temperature, Dia: dia, Ip: ip})
-		temperatura = append(temperatura, p)
 	}
 	defer db.Close()
 	var response = JsonResponse{Temperature: temperatura}
@@ -222,15 +221,15 @@ func GetMetricsLocation(w http.ResponseWriter, r *http.Request) {
 	location := []Location{}
 
 	for selectlocation.Next() {
-		var ip, regionCode, countryCode, city string
-		var err = selectlocation.Scan(&ip, &regionCode, &countryCode, &city)
+		var ip, countryCode, regionCode, city string
+		var err = selectlocation.Scan(&ip, &countryCode, &regionCode, &city)
 		if err != nil {
 			panic(err.Error())
 		}
 
 		p.Ip = ip
-		p.RegionCode = regionCode
 		p.CountryCode = countryCode
+		p.RegionCode = regionCode
 		p.City = city
 
 		location = append(location, Location{Ip: ip, CountryCode: countryCode, RegionCode: regionCode, City: city})

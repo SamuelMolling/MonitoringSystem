@@ -2,7 +2,7 @@ import { CMenu, CMenuLateral, CFooter, CContainerText } from '../../components';
 import React from 'react';
 import styled from '@emotion/styled';
 
-const InfoScreenLayout = ({ children, setKey, value }: InfoScreenLayoutProps) => {
+const InfoScreenLayout = ({ children, setKey, value, onScroll }: InfoScreenLayoutProps) => {
 
 	return (
 		<SInfoScreenLayout>
@@ -13,7 +13,7 @@ const InfoScreenLayout = ({ children, setKey, value }: InfoScreenLayoutProps) =>
 					<div className="container-menu" data-test="container-menu-mobile">
 						<CMenuLateral setCurrent={setKey} current={value} />
 					</div>
-					<div className="container-text-info">
+					<div className="container-text-info" onScroll={onScroll}>
 						<div className="min-w-x284 sm:mt-4">
 							<CContainerText>
 								{children}
@@ -32,6 +32,7 @@ export interface InfoScreenLayoutProps {
   children: React.PropsWithChildren<any>;
 	setKey: any;
 	value: string;
+	onScroll: any;
 }
 
 export default InfoScreenLayout;

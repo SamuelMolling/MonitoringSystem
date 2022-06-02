@@ -78,7 +78,13 @@ const TabelasMonitoramento = () => {
 			}
 		];
 		setColumns(columnsCPU);
-		const resp = await serverService.getCPU(); 
+		const result = await serverService.getCPU();
+		const resp = result?.map((d: any) => {
+			return {
+				...d,
+				key: d.id
+			};
+		});
 		setData(resp);
 	};
 
@@ -117,7 +123,13 @@ const TabelasMonitoramento = () => {
 			}
 		];
 		setColumns(columnsMemoria);
-		const resp = await serverService.getMemory();
+		const result = await serverService.getMemory();
+		const resp = result?.map((d: any) => {
+			return {
+				...d,
+				key: d.id
+			};
+		});
 		setData(resp);
 	};
 
@@ -129,7 +141,7 @@ const TabelasMonitoramento = () => {
 				[
 					{
 						title: "ID",
-						dataIndex: "key",
+						dataIndex: "id",
 						key: "id",
 					},
 					{
@@ -151,7 +163,13 @@ const TabelasMonitoramento = () => {
 			}
 		];
 		setColumns(columnsTemperatura);
-		const resp = await serverService.getTemperature();
+		const result = await serverService.getTemperature();
+		const resp = result?.map((d: any) => {
+			return {
+				...d,
+				key: d.id
+			};
+		});
 		setData(resp);
 	};
 
@@ -185,7 +203,13 @@ const TabelasMonitoramento = () => {
 			}
 		];
 		setColumns(columnsPressao);
-		const resp = await serverService.getPressure();
+		const result = await serverService.getPressure();
+		const resp = result?.map((d: any) => {
+			return {
+				...d,
+				key: d.id
+			};
+		});
 		setData(resp);
 	};
 
@@ -219,7 +243,13 @@ const TabelasMonitoramento = () => {
 			}
 		];
 		setColumns(columnsLocalizacao);
-		const resp = await serverService.getLocation();
+		const result = await serverService.getLocation();
+		const resp = result?.map((d: any) => {
+			return {
+				...d,
+				key: d.ip
+			};
+		});
 		setData(resp);
 	};
 
@@ -250,6 +280,34 @@ const TabelasMonitoramento = () => {
 		setLineToDelete(keys);
 	};
 
+	const getPlayGroundInfo = () => {
+		console.log("scroll");
+  };
+
+	const handleDeleteData = async () => {
+		switch (current) {
+			case "1":
+				const resp = await serverService.deleteCPU(lineToDelete);
+				console.log(resp);
+				setLineToDelete("");
+				break;
+			case "2":
+				// await serverService.deleteMemory();
+				break;
+			case "3":
+				// await serverService.deleteTemperature();
+				break;
+			case "4":
+				// await serverService.deletePressure();
+				break;
+			case "5":
+				// await serverService.deleteLocalization();
+				break;
+			default:
+				serverService.deleteCPU(lineToDelete);
+		}
+	}
+
 	return (
 		<>
 			<Head>
@@ -257,13 +315,14 @@ const TabelasMonitoramento = () => {
 				<link rel="icon" href="/favicon.ico" />
 				<meta name="description" content="MonitoringSystem" />
 			</Head>
-			<InfoScreenLayout setKey={setCurrent} value={current}>
+			<InfoScreenLayout setKey={setCurrent} value={current} onScroll={getPlayGroundInfo}>
 				{loading ? (
 					<CSpin />
 				) : (
 					<>
 						<h1 id="1" className="mb-10">
 							Tabela de Monitoramento
+							<button onClick={handleDeleteData}>Deletar</button>
 						</h1>
 						<CTable
 							columns={columns}
