@@ -26,7 +26,7 @@ func main() {
 		time.Sleep(2 * time.Second)
 		// n, _ := stream.Read(buf)
 		// s := string(buf[:n])
-		s := "T:25.5,P:101302"
+		s := "T:16.5,P:101302"
 		fmt.Fprintf(conn, s+"\n")
 		fmt.Println(s)
 	}

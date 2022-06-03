@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Thu Jun  2 17:51:44 2022
+# Make data base, printed on Thu Jun  2 21:10:09 2022
 
 # Variables
 
@@ -39,17 +36,23 @@ DB_DATA = internal/postgresql/data
 # makefile (from `makefile', line 1)
 MAKEFILE_LIST :=  makefile
 # environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-3345606c-26c7-4178-ac4b-569d30e13cd4.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-51b7e163-b04e-4159-b394-77c9689d0764.sock
 # environment
 VSCODE_CWD = /
 # environment
+GOPROXY = https://proxy.golang.org,direct
+# environment
 PATH = /Users/samuelmolling/.asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+# environment
+GOPATH = /Users/samuelmolling/go
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -71,7 +74,7 @@ ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 MANPATH = /opt/homebrew/share/man::
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+GOMODCACHE = /Users/samuelmolling/go/pkg/mod
 # environment
 HOME = /Users/samuelmolling
 # default
@@ -153,7 +156,7 @@ LANG = C
 # environment
 VSCODE_PID = 22725
 # variable set hash-table stats:
-# Load=69/1024=7%, Rehash=0, Collisions=1/92=1%
+# Load=72/1024=7%, Rehash=0, Collisions=2/95=2%
 
 # Pattern-specific Variable Values
 
@@ -264,6 +267,8 @@ destroy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jun  2 17:51:44 2022
+# Finished Make data base on Thu Jun  2 21:10:09 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+
