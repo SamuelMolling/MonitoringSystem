@@ -1,3 +1,4 @@
+export { default as CButton } from './button';
 export { default as CCarousel } from './carousel';
 export { default as CContainer } from './container';
 export { default as CContainerText } from './container-text';

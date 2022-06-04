@@ -11,7 +11,6 @@ const CTable = ({dataSource, columns, selectionType, selected, service}: CTableP
   }, [service])
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    console.log(newSelectedRowKeys)
     selected(newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
@@ -38,6 +37,7 @@ const CTable = ({dataSource, columns, selectionType, selected, service}: CTableP
       rowSelection={handleSelection()}
       columns={columns}
       dataSource={dataSource}
+      pagination={false}
     />
   );
 };
@@ -86,5 +86,20 @@ const STable = styled(Table)`
     th:last-child {
       border-top-right-radius: 0;
     }
+  }
+  .ant-table-tbody > tr.ant-table-row-selected > td {
+    background: #fff9e6;
+  }
+  .ant-radio-checked .ant-radio-inner {
+    border-color: var(--color-secondary);
+  }
+  .ant-radio-inner::after {
+    background-color: var(--color-secondary);
+  }
+  .ant-radio-checked::after {
+    border: 1px solid var(--color-secondary);
+  }
+  .ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner {
+    border-color: var(--color-secondary);
   }
 `;
