@@ -1,0 +1,9 @@
+{
+	"data": {
+		"title": "Sobre Nós",
+		"subtitle": "MonitoringSystem",
+		"image": "/images/banner-sobre-nos.svg",
+		"firstParagraph": "Um sistema de monitoramento utilizando o BMP280 e também métricas referentes ao nosso server principal salvando o histórico em um banco de dados para que possamos analisar as métricas posteriormente utilizando o Grafana. Através deste site administrativo, onde é possível gerir as métricas, consultando-as ou deletando-as.",
+		"secondParagraph": "Contato: suporte@monitoringsystem.com.br"
+	}
+}

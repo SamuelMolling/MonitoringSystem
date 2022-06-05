@@ -68,7 +68,7 @@ h3 {
 }
 
 p {
-	@apply text-secondary;
+	@apply text-primary;
 	@apply text-sm;
 	@apply mb-6;
 	@apply text-justify;
