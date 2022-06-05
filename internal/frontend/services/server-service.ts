@@ -2,14 +2,13 @@ import { API } from "./apis";
 
 const ServerService = {
 	async getCPU(index: number) {
-		// const response = await API.get<any, any>(`/api/cpu/get/${index}`);
-		// return response?.data.Cpu;
-		return [];
+		const response = await API.get<any, any>(`/api/cpu/get/${index}`);
+		return response?.data.Cpu;
 	},
 
 	async getMemory(index: number) {
 		const response = await API.get<any, any>(`/api/memory/get/${index}`);
-		return response?.Memory;
+		return response?.data.Memory;
 	},
 
 	async getTemperature(index: number) {
@@ -23,7 +22,7 @@ const ServerService = {
 	},
 
 	async getLocation(index: number) {
-		const response = await API.get<any, any>(`/api/location/get/${index}`);
+		const response = await API.get<any, any>(`/api/locality/get/${index}`);
 		return response?.data.Location;
 	},
 

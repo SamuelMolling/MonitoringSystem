@@ -36,19 +36,21 @@ const TabelasMonitoramento = () => {
 	}, [current]);
 
 	const atualizaData = async (result: any, value: number, first?: boolean) => {
-		const resp = result?.map((d: any) => {
-			return {
-				...d,
-				key: d.id
-			};
-		});
-		if (first) {
-			setData(resp);
-			setIndex(0);
-		}
-		else { 
-			setData(data.concat(resp));
-			setIndex(value + 1);
+		if (result) {
+			const resp = result?.map((d: any) => {
+				return {
+					...d,
+					key: d.id
+				};
+			});
+			if (first) {
+				setData(resp);
+				setIndex(0);
+			}
+			else { 
+				setData(data.concat(resp));
+				setIndex(value + 1);
+			}
 		}
 	}
 
@@ -270,8 +272,10 @@ const TabelasMonitoramento = () => {
 
 	const getPositionScroll = () => {
 		var element = document.querySelector(".controle");
-		if (element!.getBoundingClientRect().top - document.documentElement.scrollHeight < 0) {
-			getTable(index);
+		if (element) {
+			if (element.getBoundingClientRect().top - document.documentElement.scrollHeight < 0) {
+				getTable(index);
+			}
 		}
   };
 
