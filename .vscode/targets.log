@@ -7,7 +7,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 
 # This program built for i386-apple-darwin11.3.0
 
-# Make data base, printed on Sun Jun  5 11:21:34 2022
+# Make data base, printed on Sun Jun  5 13:19:30 2022
 
 # Variables
 
@@ -36,23 +36,17 @@ DB_DATA = internal/postgresql/data
 # makefile (from `makefile', line 1)
 MAKEFILE_LIST :=  makefile
 # environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-55fabcc7-4dac-4abe-918b-5d7e7fd4014f.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-c7db80db-1b44-4aa0-b64f-8c018be37498.sock
 # environment
 VSCODE_CWD = /
 # environment
-GOPROXY = https://proxy.golang.org,direct
-# environment
 PATH = /Users/samuelmolling/.asdf/shims:/opt/homebrew/opt/asdf/libexec/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
-# environment
-GOPATH = /Users/samuelmolling/go
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -74,7 +68,7 @@ ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
 MANPATH = /opt/homebrew/share/man::
 # environment
-GOMODCACHE = /Users/samuelmolling/go/pkg/mod
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /Users/samuelmolling
 # default
@@ -156,7 +150,7 @@ LANG = C
 # environment
 VSCODE_PID = 5987
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=2/95=2%
+# Load=69/1024=7%, Rehash=0, Collisions=1/92=1%
 
 # Pattern-specific Variable Values
 
@@ -187,8 +181,9 @@ up:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 24):
+#  commands to execute (from `makefile', line 25):
 	docker compose up
+	cd internal/frontend/ && yarn dev
 	
 
 # Not a target:
@@ -200,7 +195,7 @@ up:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-26 23:35:34
+#  Last modified 2022-06-05 11:41:05
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -242,13 +237,14 @@ install-prerequisites:
 #  commands to execute (from `makefile', line 20):
 	docker pull postgres
 	docker pull grafana/grafana
+	make build
 	
 
 destroy:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 26):
+#  commands to execute (from `makefile', line 29):
 	docker compose down --volumes
 	rm -rf $(DB_DATA)/
 	rm -rf $(GRAFANA_DATA)/*
@@ -267,7 +263,7 @@ destroy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jun  5 11:21:34 2022
+# Finished Make data base on Sun Jun  5 13:19:30 2022
 
  
 make: *** No rule to make target `all'.  Stop.
