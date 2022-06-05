@@ -19,10 +19,12 @@ build:
 install-prerequisites:
 	docker pull postgres
 	docker pull grafana/grafana
+	make build
 	
 up:
 	docker compose up
 	cd internal/frontend/ && yarn dev
+	
 destroy:
 	docker compose down --volumes
 	rm -rf $(DB_DATA)/
