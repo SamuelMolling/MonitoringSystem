@@ -22,6 +22,7 @@ install-prerequisites:
 	
 up:
 	docker compose up
+	cd internal/frontend/ && yarn dev
 destroy:
 	docker compose down --volumes
 	rm -rf $(DB_DATA)/
