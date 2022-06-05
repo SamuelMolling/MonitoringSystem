@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Sun Jun  5 13:19:30 2022
+
+# Make data base, printed on Sun Jun  5 14:54:52 2022
 
 # Variables
 
@@ -42,7 +45,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-c7db80db-1b44-4aa0-b64f-8c018be37498.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/50/8x5x35vs3dxg21406kz82m7m0000gn/T/vscode-ipc-18fbff32-63a4-4762-b644-8f8a5ea51f55.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -181,7 +184,7 @@ up:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 25):
+#  commands to execute (from `makefile', line 26):
 	docker compose up
 	cd internal/frontend/ && yarn dev
 	
@@ -195,7 +198,7 @@ up:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-05 11:41:05
+#  Last modified 2022-06-05 13:28:43
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -210,6 +213,7 @@ build:
 	cd internal/app/server/ && make build
 	cd internal/app/client_server/ && make build
 	cd internal/app/getMetricsAPI/ && make build
+	cd internal/frontend/ && make build
 	
 
 help:
@@ -234,7 +238,7 @@ install-prerequisites:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 20):
+#  commands to execute (from `makefile', line 21):
 	docker pull postgres
 	docker pull grafana/grafana
 	make build
@@ -244,7 +248,7 @@ destroy:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 29):
+#  commands to execute (from `makefile', line 30):
 	docker compose down --volumes
 	rm -rf $(DB_DATA)/
 	rm -rf $(GRAFANA_DATA)/*
@@ -263,8 +267,6 @@ destroy:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sun Jun  5 13:19:30 2022
+# Finished Make data base on Sun Jun  5 14:54:52 2022
 
  
-make: *** No rule to make target `all'.  Stop.
-
