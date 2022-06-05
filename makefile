@@ -15,6 +15,7 @@ build:
 	cd internal/app/server/ && make build
 	cd internal/app/client_server/ && make build
 	cd internal/app/getMetricsAPI/ && make build
+	cd internal/frontend/ && make build
 
 install-prerequisites:
 	docker pull postgres
