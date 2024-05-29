@@ -1,5 +1,8 @@
 # MonitoringSystem
-Monitoring System 
+
+College work to monitor temperature, humidity and pressure from a BMP280 component configured on Arduino with I2C and SPI communication interfaces, in addition to being coded using STM32.
+
+It has a Python client that collects sensor information and sends it to a Golang server that saves it in the PostgreSQL database. In addition, it has a front in Next.js and a grafana with graphs about measurements.
 
 ## Installation
 
